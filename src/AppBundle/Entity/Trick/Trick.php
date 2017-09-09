@@ -3,17 +3,17 @@
 namespace AppBundle\Entity\Trick;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Family
+ * Trick
  *
- * @ORM\Table(name="trick_family")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Trick\FamilyRepository")
+ * @ORM\Table(name="trick")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Trick\TrickRepository")
  * @UniqueEntity("name")
  */
-class Family
+class Trick
 {
     /**
      * @var int
@@ -37,9 +37,20 @@ class Family
     /**
      * @var string
      *
-     * @ORM\Column(name="introduction", type="text", nullable=true)
+     * @ORM\Column(name="introduction", type="text")
+     *
+     * @Assert\NotBlank()
      */
     private $introduction;
+
+    /**
+     * @var null|\AppBundle\Entity\Trick\Family
+     *
+     * @ORM\ManyToOne(targetEntity="Family")
+     * @ORM\JoinColumn(name="family", referencedColumnName="id", nullable=false)
+     */
+    private $family;
+
 
     /**
      * Get id
@@ -56,7 +67,7 @@ class Family
      *
      * @param string $name
      *
-     * @return Family
+     * @return Trick
      */
     public function setName($name)
     {
@@ -80,7 +91,7 @@ class Family
      *
      * @param string $introduction
      *
-     * @return Family
+     * @return Trick
      */
     public function setIntroduction($introduction)
     {
@@ -97,6 +108,22 @@ class Family
     public function getIntroduction()
     {
         return $this->introduction;
+    }
+
+    /**
+     * @return null|Family
+     */
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    /**
+     * @param null|Family $family
+     */
+    public function setFamily(?Family $family)
+    {
+        $this->family = $family;
     }
 }
 
