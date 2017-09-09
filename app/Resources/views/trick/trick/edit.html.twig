@@ -14,8 +14,14 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
+                <button type="button" class="add-image">+ image</button>
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('javascripts/trick/image_subform.js') }}"></script>
 {% endblock %}
