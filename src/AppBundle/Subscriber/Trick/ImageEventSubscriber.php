@@ -29,7 +29,19 @@ class ImageEventSubscriber implements EventSubscriber
         return [
             'prePersist',
             'preUpdate',
+            'preRemove'
         ];
+    }
+
+    public function preRemove(LifecycleEventArgs $event)
+    {
+        $entity = $event->getEntity();
+
+        foreach ($this->annotationReader->getUploadableFields($entity) as $property => $annotation)
+        {
+            # Supprimer les images
+            $this->imageHandler->remove($entity, $annotation);
+        }
     }
 
     public function preUpdate(LifecycleEventArgs $event)

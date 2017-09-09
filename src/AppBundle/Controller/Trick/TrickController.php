@@ -87,7 +87,6 @@ class TrickController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('figures_edit', array('id' => $trick->getId()));
         }
 
