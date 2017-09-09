@@ -19,3 +19,4 @@ Au travers de cet exercice, je dois faire la démonstration de mes compétences 
 - La surcharge avec Twig
 - Les paramConverters
 
+**Tout au long de sa réalisation, je m'attacherai à respecter les bonnes pratiques telles qu'elles sont définies dans la documentation officielle de Symfony.**
