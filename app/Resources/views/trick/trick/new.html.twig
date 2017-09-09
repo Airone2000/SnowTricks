@@ -5,6 +5,7 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        <button type="button" class="add-image">+ image</button>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -13,4 +14,10 @@
             <a href="{{ path('figures_index') }}">Back to the list</a>
         </li>
     </ul>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('javascripts/trick/image_subform.js') }}"></script>
 {% endblock %}

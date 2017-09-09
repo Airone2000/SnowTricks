@@ -33,3 +33,17 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+
+    AppBundle\AnnotationReader\UploadableAnnotationReader:
+        class: AppBundle\AnnotationReader\UploadableAnnotationReader
+
+    trick.image_upload:
+        class: AppBundle\Service\Trick\ImageUploadHandler
+
+    # Inscrire ici mon eventSubscriber
+    AppBundle\Subscriber\Trick\ImageEventSubscriber:
+        arguments:
+            $annotationReader: '@AppBundle\AnnotationReader\UploadableAnnotationReader'
+            $imageUploadHandler: '@trick.image_upload'
+        tags: ['doctrine.event_subscriber']

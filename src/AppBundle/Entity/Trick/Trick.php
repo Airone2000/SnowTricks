@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Trick;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -51,6 +52,23 @@ class Trick
      */
     private $family;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="trick", cascade={"persist"})
+     *
+     * @Assert\Valid()
+     */
+    private $images;
+
+
+    /**
+     * Trick constructor.
+     */
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -124,6 +142,40 @@ class Trick
     public function setFamily(?Family $family)
     {
         $this->family = $family;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Trick\Image $image
+     *
+     * @return $this
+     */
+    public function addImage(Image $image)
+    {
+        $image->setTrick($this);
+
+        $this->getImages()->add($image);
+
+        return $this;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Trick\Image $image
+     *
+     * @return $this
+     */
+    public function removeImage(Image $image)
+    {
+        $this->getImages()->removeElement($image);
+
+        return $this;
     }
 }
 
