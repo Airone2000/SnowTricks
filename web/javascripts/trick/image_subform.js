@@ -31,6 +31,18 @@ $(function(){
 
         });
 
+        /* 1.3 Retirer une image existante */
+        $('button.remove-existing-image').click(function(){
+
+            if(confirm("Confirmez-vous la suppression de cette image ?"))
+            {
+                $(this).parents('div.image').remove();
+            }
+
+            return false;
+
+        });
+
     /** 1. Fin **/
 
 })

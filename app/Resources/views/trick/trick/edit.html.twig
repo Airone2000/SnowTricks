@@ -4,6 +4,29 @@
     <h1>Trick edit</h1>
 
     {{ form_start(edit_form) }}
+
+
+        {{ form_row(edit_form.name) }}
+        {{ form_row(edit_form.introduction) }}
+        {{ form_row(edit_form.family) }}
+
+        {% for form_image in edit_form.images %}
+
+            {% if loop.first %}
+                <div id="{{ form_image.parent.vars.id }}" data-prototype="{{ form_row(form_image.parent.vars.prototype)|e }}"></div>
+            {% endif %}
+
+            <div class="image">
+                {{ form_row(form_image) }}
+                <button class="remove-existing-image">Supprimer cette image</button>
+            </div>
+
+            {% if loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+
         {{ form_widget(edit_form) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}

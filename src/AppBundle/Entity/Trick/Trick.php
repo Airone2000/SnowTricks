@@ -12,7 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="trick")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Trick\TrickRepository")
+ *
  * @UniqueEntity("name")
+ *
+ * @ORM\HasLifecycleCallbacks()
  */
 class Trick
 {
@@ -60,6 +63,13 @@ class Trick
      * @Assert\Valid()
      */
     private $images;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
 
     /**
@@ -176,6 +186,30 @@ class Trick
         $this->getImages()->removeElement($image);
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @ORM\PostLoad()
+     */
+    public function updatedAt()
+    {
+        $this->setUpdatedAt(new \DateTime());
     }
 }
 
