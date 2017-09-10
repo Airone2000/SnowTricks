@@ -35,6 +35,9 @@ class ImageUploadHandler
 
             # Hydrater l'entité
             $this->propertyAccessor->setValue($entity, $annotation->getPathnameProperty(), $imagePathname);
+
+            # Remplacer l'UploadedFile par null (précaution)
+            $this->propertyAccessor->setValue($entity, $property, null);
         }
     }
 

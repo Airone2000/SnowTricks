@@ -60,19 +60,19 @@
                 <ul class="menu">
                     <li class="divider" data-content="{{ app.user.nickname }}"></li>
                     <li class="menu-item">
-                        <a href="">
+                        <a href="{{ path('edit_profil') }}">
                             <i class="icon-pencil"></i> Mon profil
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="">
+                        <a href="{{ path('logout') }}">
                             <i class="icon-logout"></i> Déconnexion
                         </a>
                     </li>
                 </ul>
             </div>
         {% else %}
-            <a href="" class="btn menu-btn btn-sm"><i class="icon-user"></i> Accès membre</a>
+            <a href="{{ path('login') }}" class="btn menu-btn btn-sm"><i class="icon-user"></i> Accès membre</a>
         {% endif %}
     </div>
 </nav> <!-- Main nav -->

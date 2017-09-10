@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if error %}
+        {{ error.message }}
+    {% endif %}
+
+
+    {{ form_start(form, {'attr':{'action': path('login_check') }}) }}
+    {{ form_widget(form) }}
+    <button type="submit">Connexion</button>
+    {{ form_end(form) }}
+
+    <hr>
+    <a href="{{ path('register') }}">Créer un compte</a> |
+    <a href="{{ path('password_recovery') }}">J'ai oublié mon mot de passe</a>
+{% endblock %}

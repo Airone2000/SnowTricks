@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Inscription</button>
+    {{ form_end(form) }}
+
+    <hr>
+    <a href="{{ path('login') }}">Connexion</a>
+{% endblock %}
