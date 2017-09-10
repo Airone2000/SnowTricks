@@ -3,6 +3,8 @@
 namespace AppBundle\Entity\Trick;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Validator\Constraints as CustomAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Video
@@ -25,8 +27,17 @@ class Video
      * @var string
      *
      * @ORM\Column(name="urlOrIframe", type="text")
+     *
+     * @CustomAssert\Video(urlProperty="url")
      */
     private $urlOrIframe;
+
+    /**
+     * @var string
+     *
+     * @Assert\Url(checkDNS=true)
+     */
+    private $url;
 
     /**
      * @var \AppBundle\Entity\Trick\Trick
@@ -84,6 +95,26 @@ class Video
     public function setTrick(Trick $trick)
     {
         $this->trick = $trick;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return Video
+     */
+    public function setUrl(string $url): Video
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }
 
