@@ -14,7 +14,7 @@
         {% for form_image in edit_form.images %}
 
             {% if loop.first %}
-                <div id="{{ form_image.parent.vars.id }}" data-prototype="{{ form_row(form_image.parent.vars.prototype)|e }}"></div>
+                <div id="{{ form_image.parent.vars.id }}" data-prototype="{{ form_row(form_image.parent.vars.prototype)|e }}">
             {% endif %}
 
             <div class="image">
@@ -34,7 +34,7 @@
         {% for form_video in edit_form.videos %}
 
             {% if loop.first %}
-                <div id="{{ form_video.parent.vars.id }}" data-prototype="{{ form_row(form_video.parent.vars.prototype)|e }}"></div>
+                <div id="{{ form_video.parent.vars.id }}" data-prototype="{{ form_row(form_video.parent.vars.prototype)|e }}">
             {% endif %}
 
             <div class="video">

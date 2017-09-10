@@ -6,6 +6,7 @@
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <button type="button" class="add-image">+ image</button>
+        <button type="button" class="add-video">+ vidéo</button>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -20,4 +21,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('javascripts/trick/image_subform.js') }}"></script>
+    <script src="{{ asset('javascripts/trick/video_subform.js') }}"></script>
 {% endblock %}

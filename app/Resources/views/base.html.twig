@@ -1,16 +1,89 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="{{ asset('javascripts/common.js') }}"></script>
-        {% endblock %}
-    </body>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}SnowTricks{% endblock %}</title>
+    <meta name="description" content="SnowTricks, votre communauté de Snowboarders !">
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> <!-- Fonts -->
+
+    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre-exp.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre-icons.min.css') }}"> <!-- Spectre.css -->
+
+    <link rel="stylesheet" href="{{ asset('stylesheets/layout.css') }}"> <!-- Custom theme -->
+
+    {% block css %}{% endblock %} {# For dedicated css files #}
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<header id="main-header">
+    <img src="{{ asset('images/components/header.png') }}" alt="Bannière décorative" />
+</header> <!-- Main header -->
+
+<nav id="main-nav" class="navbar container">
+    <div class="navbar-section">
+        <img src="{{ asset('images/components/snowboarder.png') }}" alt="Snowboarder">
+        <a href="{{ path('figures_index') }}" class="navbar-brand">SnowTricks</a>
+    </div>
+    <div class="navbar-section">
+        <div class="dropdown">
+            <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
+                SnowTricks <i class="icon icon-caret"></i>
+            </a>
+            <!-- menu component -->
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="{{ path('figures_familles_index') }}">Familles de figures</a>
+                </li>
+                <li class="divider"></li>
+                <li class="menu-item">
+                    <a href="{{ path('figures_index') }}">Parcourir les figures</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="navbar-section">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div class="dropdown dropdown-right">
+                <a href="#" class="btn btn-primary btn-sm dropdown-toggle" tabindex="0">
+                    <i class="icon-user"></i> Mon compte <i class="icon icon-caret"></i>
+                </a>
+                <!-- menu component -->
+                <ul class="menu">
+                    <li class="divider" data-content="{{ app.user.nickname }}"></li>
+                    <li class="menu-item">
+                        <a href="">
+                            <i class="icon-pencil"></i> Mon profil
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">
+                            <i class="icon-logout"></i> Déconnexion
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+            <a href="" class="btn menu-btn btn-sm"><i class="icon-user"></i> Accès membre</a>
+        {% endif %}
+    </div>
+</nav> <!-- Main nav -->
+
+<main id="main-main">{% block body %}{% endblock %}</main>
+<footer></footer>
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('javascripts/common.js') }}"></script>
+{% endblock %}
+</body>
 </html>
