@@ -50,8 +50,10 @@ class Trick
     /**
      * @var null|\AppBundle\Entity\Trick\Family
      *
-     * @ORM\ManyToOne(targetEntity="Family")
+     * @ORM\ManyToOne(targetEntity="Family", inversedBy="tricks")
      * @ORM\JoinColumn(name="family", referencedColumnName="id", nullable=false)
+     *
+     * @Assert\NotNull()
      */
     private $family;
 
