@@ -49,7 +49,7 @@ class AuthenticationController extends Controller
                 $this->get('security.token_storage')->setToken($securityToken);
 
                 $this->addFlash('success', 'Mot de passe modifié');
-                return $this->redirectToRoute('list_tricks');
+                return $this->redirectToRoute('figures_index');
             }
 
             return $this->render('authentication/reset_password.html.twig', ['form' => $form->createView()]);

@@ -42,6 +42,13 @@ class Family
     private $introduction;
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Trick", mappedBy="family", cascade={"remove"})
+     */
+    private $tricks;
+
+    /**
      * Get id
      *
      * @return int
