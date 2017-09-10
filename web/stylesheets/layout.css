@@ -1,0 +1,50 @@
+html, body
+{
+    width:100%;
+    height:100%;
+}
+
+body
+{
+    overflow:hidden;
+}
+
+#main-header > img
+{
+    display:block;
+    width:100%;
+    height:50px;
+}
+
+#main-nav
+{
+    width:100%;
+    height:40px;
+    background-color:#EAEAEA;
+    box-shadow:#555 0px 0px 5px;
+}
+
+#main-nav .navbar-brand
+{
+    font-family: 'Permanent Marker', cursive;
+    font-size:30px;
+}
+
+#main-nav img
+{
+    display:inline-block;
+    height:60px;
+    margin-right:5px;
+}
+
+#main-main
+{
+    position:absolute;
+    top:90px;
+    bottom:0;
+    left:0;
+    right:0;
+
+    overflow:auto;
+    padding:20px;
+}
