@@ -61,6 +61,7 @@ class Trick
      * @ORM\OneToMany(targetEntity="Image", mappedBy="trick", cascade={"persist", "remove"})
      *
      * @Assert\Valid()
+     * @Assert\Count(min="1")
      */
     private $images;
 
@@ -68,6 +69,9 @@ class Trick
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Video", mappedBy="trick", cascade={"persist", "remove"})
+     *
+     * @Assert\Valid()
+     * @Assert\Count(min="1")
      */
     private $videos;
 
