@@ -48,7 +48,11 @@ services:
             $imageUploadHandler: '@trick.image_upload'
         tags: ['doctrine.event_subscriber']
 
-    # Et mon listener ...
+    # Et mes listeners ...
     AppBundle\Listener\Trick\TrickUpdate:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
+
+    AppBundle\Listener\Trick\TrickPostUpdate:
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }

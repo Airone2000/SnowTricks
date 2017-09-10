@@ -58,11 +58,18 @@ class Trick
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="trick", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="trick", cascade={"persist", "remove"})
      *
      * @Assert\Valid()
      */
     private $images;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="trick", cascade={"persist", "remove"})
+     */
+    private $videos;
 
     /**
      * @var
@@ -78,6 +85,7 @@ class Trick
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     /**
@@ -194,6 +202,40 @@ class Trick
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Trick\Video $video
+     *
+     * @return $this
+     */
+    public function addVideo(Video $video)
+    {
+        $video->setTrick($this);
+
+        $this->getVideos()->add($video);
+
+        return $this;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Trick\Video $video
+     *
+     * @return $this
+     */
+    public function removeVideo(Video $video)
+    {
+        $this->getVideos()->removeElement($video);
+
+        return $this;
     }
 
     /**

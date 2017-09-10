@@ -10,6 +10,7 @@
         {{ form_row(edit_form.introduction) }}
         {{ form_row(edit_form.family) }}
 
+        {# Images #}
         {% for form_image in edit_form.images %}
 
             {% if loop.first %}
@@ -17,8 +18,29 @@
             {% endif %}
 
             <div class="image">
-                {{ form_row(form_image) }}
+
+                <div style="display: none;">{{ form_widget(form_image) }}</div>
+
+                <img src="{{ asset(form_image.vars.value.pathname) }}" height="100">
                 <button class="remove-existing-image">Supprimer cette image</button>
+            </div>
+
+            {% if loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {# Videos #}
+        {% for form_video in edit_form.videos %}
+
+            {% if loop.first %}
+                <div id="{{ form_video.parent.vars.id }}" data-prototype="{{ form_row(form_video.parent.vars.prototype)|e }}"></div>
+            {% endif %}
+
+            <div class="video">
+
+                {{ form_widget(form_video) }}
+                <button class="remove-existing-video">Supprimer cette vidéo</button>
             </div>
 
             {% if loop.last %}
@@ -38,6 +60,7 @@
         <li>
             {{ form_start(delete_form) }}
                 <button type="button" class="add-image">+ image</button>
+                <button type="button" class="add-video">+ vidéo</button>
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
@@ -47,4 +70,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('javascripts/trick/image_subform.js') }}"></script>
+    <script src="{{ asset('javascripts/trick/video_subform.js') }}"></script>
 {% endblock %}

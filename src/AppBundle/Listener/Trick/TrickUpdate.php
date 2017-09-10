@@ -4,6 +4,7 @@ namespace AppBundle\Listener\Trick;
 
 use AppBundle\Entity\Trick\Image;
 use AppBundle\Entity\Trick\Trick;
+use AppBundle\Entity\Trick\Video;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 
@@ -28,22 +29,19 @@ class TrickUpdate
         if($entity instanceof Trick)
         {
             $em = $event->getEntityManager();
+
+            # Supprimer les images qui ne sont plus associées à la figure
             $oldImages = new ArrayCollection($em->getRepository(Image::class)->findBy(['trick' => $entity]));
             $newImages = $entity->getImages();
-            $imagesToRemove = [];
 
             foreach ($oldImages as $image)
             {
                 if( !$newImages->contains($image) )
                 {
-                    $imagesToRemove[] = $image;
+                    $em->remove($image);
                 }
             }
 
-            foreach ($imagesToRemove as $image)
-            {
-                $em->remove($image);
-            }
 
             # Le flush est appelé au niveau du contrôleur
             # Changes to associations of the passed entities are not recognized by the flush operation anymore.
