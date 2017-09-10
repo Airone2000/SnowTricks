@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Modifier profil</h1>
+
+    {% for success in app.flashes('success') %}
+        {{ success }}
+    {% endfor %}
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.nickname) }}
+
+
+
+    {% if user.avatarPathname is not empty %}
+        <img src="{{ asset(user.avatarPathname) }}" height="100">
+    {% endif %}
+
+    {{ form_row(form.avatarFile) }}
+    {{ form_row(form._token) }}
+
+
+
+    <br><br>
+    <button type="submit">Modifier</button>
+    {{ form_end(form) }}
+
+{% endblock %}

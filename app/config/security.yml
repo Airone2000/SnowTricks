@@ -1,24 +1,28 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
-
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        p_1:
+            entity:
+                class: AppBundle\Entity\Authentication\User
+                property: email
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        f_1:
+            pattern: /
+            provider: p_1
+            anonymous: true
+            form_login:
+                login_path: login
+                check_path: login_check
+                username_parameter: appbundle_authentication_user[email]
+                password_parameter: appbundle_authentication_user[password]
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: appbundle_authentication_user[csrf_token]
+                csrf_token_id: login_form
+            logout:
+                path: logout
+                target: figures_index
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+    encoders:
+        AppBundle\Entity\Authentication\User:
+            algorithm: bcrypt
+            cost: 12

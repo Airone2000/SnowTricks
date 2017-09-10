@@ -9,8 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 
 /**
  * Trick controller.
- *
- * @Route("figures")
  */
 class TrickController extends Controller
 {
@@ -34,7 +32,7 @@ class TrickController extends Controller
     /**
      * Creates a new trick entity.
      *
-     * @Route("/new", name="figures_new")
+     * @Route("figures/nouvelle-figure", name="figures_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +58,7 @@ class TrickController extends Controller
     /**
      * Finds and displays a trick entity.
      *
-     * @Route("/{id}", name="figures_show")
+     * @Route("figures/{id}", name="figures_show")
      * @Method("GET")
      */
     public function showAction(Trick $trick)
@@ -76,7 +74,7 @@ class TrickController extends Controller
     /**
      * Displays a form to edit an existing trick entity.
      *
-     * @Route("/{id}/edit", name="figures_edit")
+     * @Route("figures/{id}/modifier", name="figures_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Trick $trick)
@@ -100,7 +98,7 @@ class TrickController extends Controller
     /**
      * Deletes a trick entity.
      *
-     * @Route("/{id}", name="figures_delete")
+     * @Route("figure/{id}", name="figures_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Trick $trick)

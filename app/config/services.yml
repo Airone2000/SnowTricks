@@ -41,11 +41,18 @@ services:
     trick.image_upload:
         class: AppBundle\Service\Trick\ImageUploadHandler
 
-    # Inscrire ici mon eventSubscriber
+    # Mes eventSubscribers
     AppBundle\Subscriber\Trick\ImageEventSubscriber:
         arguments:
             $annotationReader: '@AppBundle\AnnotationReader\UploadableAnnotationReader'
             $imageUploadHandler: '@trick.image_upload'
+        tags: ['doctrine.event_subscriber']
+
+    AppBundle\Subscriber\Authentication\UserSubscriber:
+        arguments:
+            $passwordEncoder: '@security.password_encoder'
+            $tokenStorage: '@security.token_storage'
+            $session: '@session'
         tags: ['doctrine.event_subscriber']
 
     # Et mes listeners ...
@@ -56,3 +63,11 @@ services:
     AppBundle\Listener\Trick\TrickPostUpdate:
         tags:
             - { name: doctrine.event_listener, event: postUpdate }
+
+    AppBundle\Listener\Authentication\PasswordRecoveryPostPersist:
+        arguments:
+            $mailer: '@swiftmailer.mailer'
+            $session: '@session'
+            $router: '@router'
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
