@@ -30,6 +30,13 @@ class TrickType extends AbstractType
                 'by_reference' => false,
                 'prototype_name' => "_FORM_TRICK_IMAGE_",
                 'entry_options' => ['required' => false]
+            ])
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype_name' => "_FORM_TRICK_VIDEO_"
             ]);
     }
     
