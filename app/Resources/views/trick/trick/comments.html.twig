@@ -1,0 +1,5 @@
+{% for comment in comments %}
+    <div id="comment-{{ comment.id }}" class="comment">
+        {{ comment.comment }}
+    </div>
+{% endfor %}

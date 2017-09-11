@@ -5,15 +5,41 @@ namespace AppBundle\Controller\Trick;
 use AppBundle\Entity\Trick\Comment;
 use AppBundle\Entity\Trick\Trick;
 use AppBundle\Form\Trick\CommentType;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Trick controller.
  */
 class TrickController extends Controller
 {
+    /**
+     * @Route("figures/{id}/commentaires/{page}", name="trick_comments", requirements={"id":"\d+", "page":"\d+"})
+     * @Method("GET")
+     */
+    public function getTrickCommentsAction(Trick $trick, Request $request, $page)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            # Get comments
+            $repository = $this->getDoctrine()->getRepository( Comment::class );
+            $comments = $repository->getPaginatedComments($page);
+
+            # Return jsonResponse
+            $view = $this->renderView('trick/trick/comments.html.twig', ['comments' => $comments]);
+            $jsonResponse = new JsonResponse(['totalComments' => count($comments), 'view' => $view]);
+            return $jsonResponse;
+        }
+
+        # Impossible d'accéder à cette page autrement que par Ajax
+        throw new NotFoundHttpException();
+    }
+
     /**
      * Lists all trick entities.
      *
