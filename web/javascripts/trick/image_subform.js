@@ -5,7 +5,7 @@ $(function(){
     var $imagesContainer = $('#appbundle_trick_trick_images');
     var _prototype = $imagesContainer.data('prototype');
     var $btnAddImage = $('button.add-image');
-    var $btnRemoveImage = $('<button class="remove-image">Retirer ce sous-formulaire</button>');
+    var $btnRemoveImage = $('<button class="remove-image btn btn-link btn-sm btn-block">Retirer</button>');
 
         /* 1.1 Ajouter un sous-formulaire image */
         $btnAddImage.click(function(){
@@ -17,6 +17,7 @@ $(function(){
 
 
             $imagesContainer.append( prototype );
+            $(prototype).find('input[type=file]').click();
 
             return false;
 

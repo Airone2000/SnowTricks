@@ -14,11 +14,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Trick controller.
+ *
+ * @Route("figures/")
  */
 class TrickController extends Controller
 {
     /**
-     * @Route("/figures/commentaires/{id}/modifier", name="edit_comment", requirements={"id":"\d+"})
+     * @Route("commentaires/{id}/modifier", name="edit_comment", requirements={"id":"\d+"})
      */
     public function editCommentAction(Comment $comment, Request $request)
     {
@@ -43,7 +45,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("/figures/commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
+     * @Route("commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
      * @Method("DELETE")
      */
     public function removeComment(Comment $comment, Request $request)
@@ -61,7 +63,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("figures/{id}/commentaires/{page}", name="trick_comments", requirements={"id":"\d+", "page":"\d+"})
+     * @Route("{id}/commentaires/{page}", name="trick_comments", requirements={"id":"\d+", "page":"\d+"})
      * @Method("GET")
      */
     public function getTrickCommentsAction(Trick $trick, Request $request, $page)
@@ -102,7 +104,7 @@ class TrickController extends Controller
     /**
      * Creates a new trick entity.
      *
-     * @Route("figures/nouvelle-figure", name="figures_new")
+     * @Route("nouvelle-figure", name="figures_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -128,7 +130,7 @@ class TrickController extends Controller
     /**
      * Finds and displays a trick entity.
      *
-     * @Route("figures/{id}", name="figures_show")
+     * @Route("{id}", name="figures_show")
      * @Method({"GET", "POST"} )
      */
     public function showAction(Trick $trick, Request $request)
@@ -162,7 +164,7 @@ class TrickController extends Controller
     /**
      * Displays a form to edit an existing trick entity.
      *
-     * @Route("figures/{id}/modifier", name="figures_edit")
+     * @Route("{id}/modifier", name="figures_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Trick $trick)
@@ -186,7 +188,7 @@ class TrickController extends Controller
     /**
      * Deletes a trick entity.
      *
-     * @Route("figure/{id}", name="figures_delete")
+     * @Route("{id}", name="figures_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Trick $trick)

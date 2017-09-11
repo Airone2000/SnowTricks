@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/trick/new.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Trick creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="button" class="add-image">+ image</button>
-        <button type="button" class="add-video">+ vidéo</button>
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="container">
+        <div class="columns">
+            <div class="form-container col-ml-auto col-mr-auto">
 
-    <ul>
-        <li>
-            <a href="{{ path('figures_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                <h1 class="text-center text-bold">Nouvelle figure</h1>
+                <p class="text-gray intro text-center">Tous les champs sont requis dont au moins une image et une vidéo.</p>
+                <div class="divider"></div>
+                <br>
+
+                {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
+
+                    <div class="form-group">
+                        <label class="form-label">Ajouter des média :</label>
+                        <p class="btn-group btn-group-block form-group">
+                            <button type="button" class="add-image btn btn-sm">Ajouter une image</button>
+                            <button type="button" class="add-video btn btn-sm">Ajouter une vidéo</button>
+                            {{ form_errors(form) }}
+                        </p>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Enregistrer</button>
+                    </div>
+                {{ form_end(form) }}
+
+                <br>
+                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
+                <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
+                <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
+                <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Créer un groupe</a>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

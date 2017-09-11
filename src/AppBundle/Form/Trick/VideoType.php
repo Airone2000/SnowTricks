@@ -13,7 +13,12 @@ class VideoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('urlOrIframe');
+        $builder->add('urlOrIframe', null, [
+            'label' => 'Vidéo :',
+            'attr' => [
+                'placeholder' => 'URL / Code de la vidéo (Youtube ou Dailymotion)'
+            ]
+        ]);
     }
     
     /**

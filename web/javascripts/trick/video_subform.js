@@ -5,7 +5,7 @@ $(function(){
     var $videosContainer = $('#appbundle_trick_trick_videos');
     var _prototype = $videosContainer.data('prototype');
     var $btnAddVideo = $('button.add-video');
-    var $btnRemoveVideo = $('<button class="remove-video">Retirer ce sous-formulaire</button>');
+    var $btnRemoveVideo = $('<button class="remove-video btn btn-link btn-sm btn-block">Retirer</button>');
 
     /* 1.1 Ajouter un sous-formulaire video */
     $btnAddVideo.click(function(){
@@ -17,6 +17,7 @@ $(function(){
 
 
         $videosContainer.append( prototype );
+        $(prototype).find('textarea').focus();
 
         return false;
 

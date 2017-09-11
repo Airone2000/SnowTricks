@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'component/form/form_div_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -70,20 +72,13 @@ liip_imagine:
 
     filter_sets:
         cache: ~
-
-        # the name of the "filter set"
         my_thumb:
-
-            # adjust the image quality to 75%
             quality: 75
-
-            # list of transformations to apply (the "filters")
             filters:
-
-                # create a thumbnail: set size to 120x90 and use the "outbound" mode
-                # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [100, 100], mode: outbound }
-
-                # create a 2px black border: center the thumbnail on a black background
-                # 4px larger to create a 2px border around the final image
                 background: { size: [104, 104], position: center, color: '#ccc' }
+
+        wide_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [300, 100], mode: outbound }
