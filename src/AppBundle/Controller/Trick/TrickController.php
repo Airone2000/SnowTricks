@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller\Trick;
 
+use AppBundle\Entity\Trick\Comment;
 use AppBundle\Entity\Trick\Trick;
+use AppBundle\Form\Trick\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -59,15 +61,33 @@ class TrickController extends Controller
      * Finds and displays a trick entity.
      *
      * @Route("figures/{id}", name="figures_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"} )
      */
-    public function showAction(Trick $trick)
+    public function showAction(Trick $trick, Request $request)
     {
+        # Formulaire de suppression
         $deleteForm = $this->createDeleteForm($trick);
+
+        # Formulaire d'ajout de commentaires
+        $comment = (new Comment())->setTrick($trick);
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
+        if($commentForm->isSubmitted() && $commentForm->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre commentaire a été enregistré !');
+            return $this->redirectToRoute('figures_show', ['id' => $trick->getId()]);
+        }
+
 
         return $this->render('trick/trick/show.html.twig', array(
             'trick' => $trick,
             'delete_form' => $deleteForm->createView(),
+            'comment_form' => $commentForm->createView()
         ));
     }
 

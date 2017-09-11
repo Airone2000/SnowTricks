@@ -25,6 +25,19 @@
     </table>
 
     <ul>
+        <li><h3>Commenter cette figure</h3></li>
+        <li>
+            {{ form_start(comment_form) }}
+            {{ form_row(comment_form.comment) }}
+            <button type="submit">Publier ce commentaire</button>
+            {{ form_end(comment_form) }}
+        </li>
+        <li id="comments">
+            <p class="loading"></p>
+        </li>
+    </ul>
+
+    <ul>
         <li>
             <a href="{{ path('figures_index') }}">Back to the list</a>
         </li>
