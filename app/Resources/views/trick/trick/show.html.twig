@@ -32,6 +32,7 @@
             <button type="submit">Publier ce commentaire</button>
             {{ form_end(comment_form) }}
         </li>
+        <li><h4>Commentaires</h4></li>
         <li id="comments" data-controller="{{ path( 'trick_comments', {id : trick.id, page : 0} ) }}">
             <p class="loading"></p>
         </li>
@@ -54,5 +55,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('javascripts/trick/comment_get.js') }}"></script>
+    <script src="{{ asset('javascripts/trick/comment.js') }}"></script>
 {% endblock %}

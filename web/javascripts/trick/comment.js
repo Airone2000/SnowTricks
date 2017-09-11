@@ -60,4 +60,78 @@ $(function(){
         // Appeler 10 commentaires supplémentaires
         loadTenMoreComments(page++);
     });
+
+    // Supprimer un commentaire
+    $(document).on('click', 'a.remove-comment', function(){
+
+        if(confirm('Confirmez vous la suppression de ce commentaire ?'))
+        {
+            let $parent = $(this).closest('div.comment')
+            let href = $(this).attr('href');
+
+            // Normalement,
+            $.post(href, { '_method' : 'DELETE' }, function(response){
+
+                $parent.text(response.msg);
+
+            });
+        }
+
+        return false;
+
+    });
+
+    // Modifier un commentaire
+    $(document).on('click', 'a.edit-comment', function(){
+
+        let $parent = $(this).closest('div.comment');
+        let href = $(this).attr('href');
+
+        $parent.html('<p class="loading"></p>');
+
+        $.get(href, function(response){
+
+            if(response.status === 'OK_1')
+            {
+                $parent.html(response.view);
+            }
+        });
+
+        return false;
+
+    });
+
+    // Modifier effectivement un commentaire
+    $(document).on('submit', 'form.form-edit-comment', function(){
+
+        let $form = $(this);
+        let output = {};
+        let action = $form.attr('action');
+        let $btnSubmit = $form.find('button[type=submit]');
+        let data = $form.serializeArray();
+
+        /* Récupérer les données du formulaire */
+        for(var id in data)
+        {
+            let field = data[id];
+            output[field.name] = field.value
+        }
+
+        /* Afficher le loader */
+        $btnSubmit.addClass('loading');
+
+        /* Procéder à la requête */
+        $.post(action, data, function(response){
+            if(response.status === 'OK_2')
+            {
+                $form.parent('div.comment').replaceWith(response.view);
+            }
+            else
+            {
+                $form.replaceWith(response.view);
+            }
+        });
+
+        return false;
+    });
 })

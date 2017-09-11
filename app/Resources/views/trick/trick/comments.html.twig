@@ -1,5 +1,3 @@
 {% for comment in comments %}
-    <div id="comment-{{ comment.id }}" class="comment">
-        {{ comment.comment }}
-    </div>
+    {% include 'trick/trick/comment.html.twig' with { comment : comment } %}
 {% endfor %}

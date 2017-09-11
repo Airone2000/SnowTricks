@@ -5,7 +5,6 @@ namespace AppBundle\Controller\Trick;
 use AppBundle\Entity\Trick\Comment;
 use AppBundle\Entity\Trick\Trick;
 use AppBundle\Form\Trick\CommentType;
-use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +17,49 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class TrickController extends Controller
 {
+    /**
+     * @Route("/figures/commentaires/{id}/modifier", name="edit_comment", requirements={"id":"\d+"})
+     */
+    public function editCommentAction(Comment $comment, Request $request)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $em = $this->getDoctrine()->getManager()->flush();
+                $view = $this->renderView('trick/trick/comment.html.twig', ['comment' => $comment]);
+                return new JsonResponse(['view' => $view, 'status' => 'OK_2']);
+            }
+
+
+            $view = $this->renderView('trick/trick/comment_type.html.twig', ['form' => $form->createView(), 'comment' => $comment]);
+            return new JsonResponse(['view' => $view, 'status' => 'OK_1']);
+        }
+
+        throw new NotFoundHttpException();
+    }
+
+    /**
+     * @Route("/figures/commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
+     * @Method("DELETE")
+     */
+    public function removeComment(Comment $comment, Request $request)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+
+            return new JsonResponse(['status' => 'OK', 'msg' => 'Commentaire supprimé']);
+        }
+
+        throw new NotFoundHttpException();
+    }
+
     /**
      * @Route("figures/{id}/commentaires/{page}", name="trick_comments", requirements={"id":"\d+", "page":"\d+"})
      * @Method("GET")

@@ -162,7 +162,7 @@ class Trick
     /**
      * @return null|Family
      */
-    public function getFamily(): ?Family
+    public function getFamily()
     {
         return $this->family;
     }
@@ -170,7 +170,7 @@ class Trick
     /**
      * @param null|Family $family
      */
-    public function setFamily(?Family $family)
+    public function setFamily($family)
     {
         $this->family = $family;
     }
@@ -264,8 +264,7 @@ class Trick
      *
      * Pas besoin d'ajouter addComment / removeComment
      * Ces méthodes ne sont nécessaires que dans le cas où on
-     * souhaite intervenir dans le processus d'ajout/suppression.
-     *
+     * souhaite intervenir dans le processus da
      */
     public function getComments()
     {
