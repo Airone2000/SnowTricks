@@ -21,7 +21,7 @@
 
                 <div style="display: none;">{{ form_widget(form_image) }}</div>
 
-                <img src="{{ asset(form_image.vars.value.pathname) }}" height="100">
+                <img src="{{ asset(form_image.vars.value.pathname) | imagine_filter('my_thumb') }}">
                 <button class="remove-existing-image">Supprimer cette image</button>
             </div>
 
