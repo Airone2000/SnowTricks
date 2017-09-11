@@ -1,0 +1,6 @@
+<div id="comment-{{ comment.id }}" class="comment">
+    {{ comment.comment }}
+    <br>
+    <a href="{{ path('edit_comment', {id:comment.id} ) }}" class="edit-comment">Modifier</a>
+    <a href="{{ path('remove_comment', {id : comment.id} ) }}" class="remove-comment">Supprimer</a>
+</div>
