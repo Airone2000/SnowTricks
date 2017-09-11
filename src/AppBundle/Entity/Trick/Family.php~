@@ -105,45 +105,5 @@ class Family
     {
         return $this->introduction;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tricks = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add trick
-     *
-     * @param \AppBundle\Entity\Trick\Trick $trick
-     *
-     * @return Family
-     */
-    public function addTrick(\AppBundle\Entity\Trick\Trick $trick)
-    {
-        $this->tricks[] = $trick;
-
-        return $this;
-    }
-
-    /**
-     * Remove trick
-     *
-     * @param \AppBundle\Entity\Trick\Trick $trick
-     */
-    public function removeTrick(\AppBundle\Entity\Trick\Trick $trick)
-    {
-        $this->tricks->removeElement($trick);
-    }
-
-    /**
-     * Get tricks
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTricks()
-    {
-        return $this->tricks;
-    }
 }
+

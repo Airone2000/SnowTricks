@@ -78,7 +78,7 @@ class Trick
     private $videos;
 
     /**
-     * @var
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="trick")
      */
@@ -260,19 +260,6 @@ class Trick
     }
 
     /**
-     * @return ?\Doctrine\ORM\PersistentCollection
-     *
-     * Pas besoin d'ajouter addComment / removeComment
-     * Ces méthodes ne sont nécessaires que dans le cas où on
-     * souhaite intervenir dans le processus d'ajout/suppression.
-     *
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
      * @ORM\PostLoad()
      */
     public function updatedAt()
@@ -280,3 +267,4 @@ class Trick
         $this->setUpdatedAt(new \DateTime());
     }
 }
+
