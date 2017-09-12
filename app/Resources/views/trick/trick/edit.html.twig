@@ -11,7 +11,22 @@
             <div class="form-container col-xl-4 col-lg-6 col-md-12 col-ml-auto col-mr-auto">
 
                 <h1 class="text-center text-bold">{{ trick.name ?? 'Sans titre' }}</h1>
-                <p class="text-gray text-center">Vous modifiez la figure</p>
+
+                {# Afficher message default/success/erreur #}
+                {% for success in app.flashes('success') %}
+                    <p class="toast toast-success text-center">{{ success }}</p>
+                {% else %}
+
+                    {% if form_errors(edit_form) %}
+                        <p class="toast toast-error text-center">Veuillez vérifier votre saisie</p>
+                    {% else %}
+                        <p class="text-gray text-center">Vous modifiez la figure</p>
+                    {% endif %}
+
+                {% endfor %}
+
+
+
                 <div class="divider"></div>
                 <br>
 

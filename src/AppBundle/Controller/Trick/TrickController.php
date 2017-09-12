@@ -175,6 +175,7 @@ class TrickController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'La figure a été mise à jour !');
             return $this->redirectToRoute('figures_edit', array('id' => $trick->getId()));
         }
 
