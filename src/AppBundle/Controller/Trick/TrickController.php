@@ -48,7 +48,7 @@ class TrickController extends Controller
      * @Route("commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
      * @Method("DELETE")
      */
-    public function removeComment(Comment $comment, Request $request)
+    public function removeCommentAction(Comment $comment, Request $request)
     {
         if($request->isXmlHttpRequest())
         {
@@ -72,7 +72,7 @@ class TrickController extends Controller
         {
             # Get comments
             $repository = $this->getDoctrine()->getRepository( Comment::class );
-            $comments = $repository->getPaginatedComments($page);
+            $comments = $repository->getPaginatedComments($page, 10, $trick);
 
             # Return jsonResponse
             $view = $this->renderView('trick/trick/comments.html.twig', ['comments' => $comments]);
