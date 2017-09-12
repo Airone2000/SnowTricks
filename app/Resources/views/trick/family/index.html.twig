@@ -1,43 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/family/index.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="container">
-    <h1>Families list</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Introduction</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for family in families %}
-            <tr>
-                <td><a href="{{ path('figures_familles_show', { 'id': family.id }) }}">{{ family.id }}</a></td>
-                <td>{{ family.name }}</td>
-                <td>{{ family.introduction }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('figures_familles_show', { 'id': family.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('figures_familles_edit', { 'id': family.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('figures_familles_new') }}">Create a new family</a>
-        </li>
-    </ul>
+        <div class="columns">
+            <table id="listing" class="table table-hover table-striped col-6 col-ml-auto col-mr-auto">
+                <thead>
+                    <tr>
+                        <th class="text-bold text-uppercase">Groupes de figures ({{ families|length }})</th>
+                        <th class="text-center"><a href="{{ path('figures_familles_new') }}" class="btn btn-primary btn-sm circle tooltip tooltip-left" data-tooltip="Créer un groupe">+</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for family in families %}
+                    <tr>
+                        <td>{{ family.name ~ ' ('~ family.tricks|length ~')' }}</td>
+                        <td class="text-right">
+                            <a href="{{ path('figures_familles_edit', { 'id': family.id }) }}" class="btn btn-sm">Modifier</a>
+                            <a href="{{ path('figures_familles_show', { 'id': family.id }) }}" class="btn btn-primary btn-sm">Parcourir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

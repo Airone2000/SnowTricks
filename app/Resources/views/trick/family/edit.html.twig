@@ -27,7 +27,9 @@
                 <br>
 
                 {{ form_start(edit_form) }}
-                    {{ form_widget(edit_form) }}
+
+                    {{ form_row(edit_form.name) }}
+                    {{ form_row(edit_form.introduction) }}
 
                     {# Best practice : add this within the template #}
                     <br><button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>
