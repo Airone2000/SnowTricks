@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th class="text-bold text-uppercase">Groupes de figures ({{ families|length }})</th>
-                        <th class="text-center"><a href="{{ path('figures_familles_new') }}" class="btn btn-primary btn-sm circle tooltip tooltip-left" data-tooltip="Créer un groupe">+</a></th>
+                        <th class="text-right"><a href="{{ path('figures_familles_new') }}" class="btn btn-primary btn-sm circle tooltip tooltip-left" data-tooltip="Créer un groupe">+</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +20,7 @@
                         <td>{{ family.name ~ ' ('~ family.tricks|length ~')' }}</td>
                         <td class="text-right">
                             <a href="{{ path('figures_familles_edit', { 'id': family.id }) }}" class="btn btn-sm">Modifier</a>
-                            <a href="{{ path('figures_familles_show', { 'id': family.id }) }}" class="btn btn-primary btn-sm">Parcourir</a>
+                            <a href="{{ path('figures_familles_show', { 'id': family.id }) }}#presentation" class="btn btn-primary btn-sm">Parcourir</a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -1,0 +1,22 @@
+body
+{
+    background-color: #8ab6d5;
+}
+
+#family
+{
+    background: #fff;
+    border:none;
+    padding:10px;
+}
+
+#family > .panel-body > div
+{
+    display: none;
+}
+
+#family > .panel-body > div:target
+{
+    display:block;
+    padding: 20px;
+}
