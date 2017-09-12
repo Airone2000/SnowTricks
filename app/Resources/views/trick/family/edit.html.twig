@@ -1,21 +1,51 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/family/edit.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Family edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="container">
+        <div class="columns">
+            <div class="form-container col-ml-auto col-mr-auto">
 
-    <ul>
-        <li>
-            <a href="{{ path('figures_familles_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <h1 class="text-center text-bold">{{ family.name ?? 'Groupe sans nom' }}</h1>
+                {# Afficher message default/success/erreur #}
+                {% for success in app.flashes('success') %}
+                    <p class="toast toast-success text-center">{{ success }}</p>
+                {% else %}
+
+                    {% if form_errors(edit_form) %}
+                        <p class="toast toast-error text-center">Veuillez vérifier votre saisie</p>
+                    {% else %}
+                        <p class="text-gray text-center">Vous modifiez le groupe</p>
+                    {% endif %}
+
+                {% endfor %}
+                <div class="divider"></div>
+                <br>
+
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+
+                    {# Best practice : add this within the template #}
+                    <br><button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>
+                {{ form_end(edit_form) }}
+
+                {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-block btn-sm btn-link">Supprimer ce groupe</button>
+                {{ form_end(delete_form) }}
+
+
+                <br>
+                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
+                <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
+                <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Ouvrir un groupe</a>
+                <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
+                <a href="{{ path('figures_new') }}" class="btn btn-link">Créer une figure</a>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

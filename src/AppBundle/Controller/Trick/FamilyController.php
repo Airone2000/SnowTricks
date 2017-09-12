@@ -87,6 +87,7 @@ class FamilyController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Le groupe a été mis à jour !');
 
             return $this->redirectToRoute('figures_familles_edit', array('id' => $family->getId()));
         }
