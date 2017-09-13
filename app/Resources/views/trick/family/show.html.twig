@@ -14,55 +14,48 @@
             (family.name) : app.request.requestUri
         }} %}
 
-        <div class="columns">
-            <div id="col-left" class="column col-6">
-                <div class="container">
-                    <div class="columns">
-                        <div id="family-intro" class="column col-12">
-                            <h1 class="text-uppercase text-bold text-break">{{ family.name }}</h1>
-                            <div class="divider" data-content="PRESENTATION"></div>
-                            <p class="text-justify">{{ family.introduction }}</p>
-                        </div>
+        <div class="row">
+            <div id="col-left" class="col-xs-6">
+                <div class="row">
+                    <div id="family-intro" class="col-xs-12">
+                        <h1 class="text-uppercase text-bold text-break">{{ family.name }}</h1>
+                        <div class="divider" data-content="PRESENTATION"></div>
+                        <p class="text-justify">{{ family.introduction }}</p>
+                    </div>
 
-                        <div id="family-actions" class="column col-12">
-                            <div class="columns">
-                                <div class="column col-6">
-                                    <a href="{{ path("figures_familles_edit", { id : family.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier le groupe</a>
-                                </div>
-                                <div class="column col-6 text-right">
-                                    {{ form_start(delete_form) }}
-                                        <button type="submit" class="btn ask-confirm text-bold text-uppercase">Supprimer le groupe</button>
-                                    {{ form_end(delete_form) }}
-                                </div>
+                    <div id="family-actions" class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="{{ path("figures_familles_edit", { id : family.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier le groupe</a>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                {{ form_start(delete_form) }}
+                                    <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase">Supprimer le groupe</button>
+                                {{ form_end(delete_form) }}
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div id="col-right" class="column col-6">
-                <div class="columns">
+            <div id="col-right" class="col-xs-6">
+                <div class="row">
 
                     {# Your turn ! #}
-                    <div class="column col-6">
-                        <div id="leading-card" class="card">
-                            <div class="card-header text-ellipsis">
-                                <div class="card-title h5 text-uppercase text-bold text-center">A vous de jouer !</div>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="card-body">
-                                <p class="text-justify">Vous connaissez peut-être une magnifique figure qui trouverait sa place ici ?</p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="{{ path("figures_new", { family : family.id }) }}" class="btn btn-primary btn-block text-bold text-uppercase">Partager ma figure</a>
+                    <div class="col-xs-12">
+                        <div id="leading-card">
+                            <div class="row">
+                                <div class="col-xs-8 text-gray">Ce groupe contient {{ family.tricks|length }} figures.</div>
+                                <div class="col-xs-4 text-right">
+                                    <a href="{{ path('figures_new', { family : family.id }) }}" class="btn btn-warning text-uppercase text-bold">+ figure</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {% for trick in family.tricks %}
 
-                        <div class="column col-6">
+                        <div class="col-xs-6">
                             <div class="card">
                                 <div class="card-header text-ellipsis">
                                     <div class="card-title h5">{{ trick.name }}</div>
@@ -72,10 +65,8 @@
                                     <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
                                 </div>
                                 <div class="card-footer">
-                                    <div class="btn-group btn-group-block">
-                                        <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn btn-sm text-bold text-uppercase">Modifier</a>
-                                        <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>
-                                    </div>
+                                    <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn btn-sm text-bold text-uppercase">Modifier</a>
+                                    <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>
                                 </div>
                             </div>
 
