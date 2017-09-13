@@ -16,14 +16,14 @@
             'Modifier' : app.request.requestUri
         }} %}
 
-        <div class="columns">
-            <div class="form-container col-xl-4 col-lg-6 col-md-12 col-ml-auto col-mr-auto">
+        <div class="row">
+            <div class="form-container col-xs-6 col-xs-offset-3">
 
                 <h1 class="text-center text-bold">{{ trick.name ?? 'Sans titre' }}</h1>
 
                 {# Afficher message default/success/erreur #}
                 {% for success in app.flashes('success') %}
-                    <p class="toast toast-success text-center">{{ success }}</p>
+                    <p class="alert alert-success text-center">{{ success }}</p>
                 {% else %}
 
                     {% if form_errors(edit_form) %}
@@ -36,8 +36,7 @@
 
 
 
-                <div class="divider"></div>
-                <br>
+                <hr>
 
                 {{ form_start(edit_form) }}
 
@@ -78,7 +77,7 @@
 
                         <div class="video">
                             {{ form_widget(form_video) }}
-                            <button class="remove-existing-video btn btn-link btn-block btn-sm">Supprimer cette vidéo</button>
+                            <button class="remove-existing-video btn btn-link btn-block btn-xs">Supprimer cette vidéo</button>
                         </div>
 
                         {% if loop.last %}
@@ -89,9 +88,9 @@
                     {# Buttons media #}
                     <div class="form-group">
                         <label class="form-label">Ajouter des média :</label>
-                        <p class="btn-group btn-group-block form-group">
-                            <button type="button" class="add-image btn btn-sm">Ajouter une image</button>
-                            <button type="button" class="add-video btn btn-sm">Ajouter une vidéo</button>
+                        <p id="btn-add-media">
+                            <button type="button" class="add-image btn-default btn-sm"><i class="icon-picture"></i> Ajouter une image</button>
+                            <button type="button" class="add-video btn-default btn-sm"><i class="icon-video"></i> Ajouter une vidéo</button>
                             {{ form_errors(edit_form) }}
                         </p>
                     </div>
@@ -107,14 +106,6 @@
                 {{ form_start(delete_form) }}
                 <button type="submit" class="ask-confirm btn btn-block btn-sm btn-link">Supprimer cette figure</button>
                 {{ form_end(delete_form) }}
-
-                <br>
-                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
-                <div class="text-center">
-                    <a href="{{ path('figures_new', { family : trick.id }) }}" class="btn btn-link">Créer une figure similaire</a>
-                    <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
-                    <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Créer un groupe</a>
-                </div>
             </div>
         </div>
     </div>

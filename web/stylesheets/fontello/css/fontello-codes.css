@@ -2,3 +2,5 @@
 .icon-down-bold:before { content: '\e800'; } /* '' */
 .icon-down-circle:before { content: '\e801'; } /* '' */
 .icon-emo-unhappy:before { content: '\e802'; } /* '' */
+.icon-picture:before { content: '\e803'; } /* '' */
+.icon-video:before { content: '\e804'; } /* '' */

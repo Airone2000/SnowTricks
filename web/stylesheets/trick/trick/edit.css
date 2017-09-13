@@ -7,5 +7,19 @@ div.form-container
 {
     padding: 10px;
     background: #fff;
-    box-shadow: #999 0px 0px 4px;
+    box-shadow: rgba(0,0,0,.1) 0px 0px 3px;
+    margin-bottom: 50px;
+}
+
+#btn-add-media
+{
+    display: flex;
+    justify-content: space-around;
+    padding-top:5px;
+}
+
+.remove-existing-video
+{
+    position:relative;
+    top: -10px;
 }

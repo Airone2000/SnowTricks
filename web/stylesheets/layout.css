@@ -109,3 +109,33 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 } /* Override the Chrome's yellow banana */
+
+.breadcrumb
+{
+    background: transparent;
+}
+
+textarea
+{
+    resize: vertical;
+}
+
+input[type=file]
+{
+    font-size: 14px;
+    line-height: 1.42857143;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
