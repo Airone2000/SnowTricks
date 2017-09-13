@@ -3,6 +3,7 @@ html
     font-size: 20px;
     line-height: 1.428571429;
     -webkit-tap-highlight-color: transparent;
+    height:100%;
 }
 
 body
@@ -14,6 +15,8 @@ body
     background: linear-gradient(to bottom, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 );
     font-size: .7rem;
+    min-height: 100%;
+    background-attachment: fixed;
 }
 
 *

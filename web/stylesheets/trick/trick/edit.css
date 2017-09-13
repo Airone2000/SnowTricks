@@ -23,3 +23,9 @@ div.form-container
     position:relative;
     top: -10px;
 }
+
+.remove-video, .remove-image
+{
+    position:relative;
+    top: -15px;
+}
