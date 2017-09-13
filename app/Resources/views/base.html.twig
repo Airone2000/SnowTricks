@@ -55,7 +55,7 @@
                                 <li><a href="{{ path('logout') }}">Déconnexion</a></li>
                             </ul>
                         </li>
-                    {% else %}
+                    {% elseif app.request.get('_route') != 'login' %}
                         <li class="dropdown">
                             <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Accès membre

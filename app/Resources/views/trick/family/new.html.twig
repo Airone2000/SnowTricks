@@ -15,13 +15,13 @@
         'Nouveau groupe' : path('figures_familles_new')
         }} %}
 
-        <div class="columns">
+        <div class="row">
 
-            <div class="form-container col-ml-auto col-mr-auto">
+            <div class="form-container col-xs-6 col-xs-offset-3">
 
                 <h1 class="text-center text-bold">Nouveau groupe</h1>
                 <p class="text-gray intro text-center">Un groupe est destiné à collecter des figures.</p>
-                <div class="divider"></div>
+                <hr>
                 <br>
 
                 {{ form_start(form) }}
@@ -30,12 +30,6 @@
                     {# Best practice : add this within the template #}
                     <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Créer</button>
                 {{ form_end(form) }}
-
-                <br>
-                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
-                <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
-                <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
-                <a href="{{ path('figures_new') }}" class="btn btn-link">Créer une figure</a>
 
             </div>
 

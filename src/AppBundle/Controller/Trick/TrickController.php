@@ -86,23 +86,6 @@ class TrickController extends Controller
     }
 
     /**
-     * Lists all trick entities.
-     *
-     * @Route("/", name="figures_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $tricks = $em->getRepository('AppBundle:Trick\Trick')->findAll();
-
-        return $this->render('trick/trick/index.html.twig', array(
-            'tricks' => $tricks,
-        ));
-    }
-
-    /**
      * Creates a new trick entity.
      *
      * @Route("/nouvelle-figure/{family}", name="figures_new", requirements={"family":"\d+"})
@@ -204,7 +187,7 @@ class TrickController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('figures_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**

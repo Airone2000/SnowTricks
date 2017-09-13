@@ -20,7 +20,11 @@ security:
                 csrf_token_id: login_form
             logout:
                 path: logout
-                target: figures_index
+                target: homepage
+            remember_me:
+                secret: '%secret%'
+                lifetime: 604800
+                path: /
 
     encoders:
         AppBundle\Entity\Authentication\User:
