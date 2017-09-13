@@ -6,113 +6,85 @@
 
 {% block body %}
     <div class="container">
+
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            (family.name) : app.request.requestUri
+        }} %}
+
         <div class="columns">
-            <div class="column col-12 col-ml-auto col-mr-auto">
-                <div id="family" class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title text-center"><h1>{{ family.name }}</h1></div>
-                    </div>
-                    <div class="panel-nav">
-                        <ul class="tab tab-block">
-                            <li class="tab-item"> <a href="#presentation">Présentation</a> </li>
-                            <li class="tab-item"> <a href="#figures">Figures ({{ family.tricks|length }})</a> </li>
-                            <li class="tab-item"> <a href="#actions">Actions</a> </li>
-                        </ul>
-                    </div>
-                    <div class="panel-body">
-                        <div id="presentation" class="text-gray">{{ family.introduction|nl2br }}</div>
-                        <div id="figures">
-
-                            {% for trick in family.tricks %}
-                                <div class="tile">
-                                    <div class="tile-icon">
-                                        <figure class="avatar avatar-lg">
-                                            <img src="{{ asset(trick.images.first.pathname) | imagine_filter('my_thumb') }}" height="48" width="48">
-                                        </figure>
-                                    </div>
-                                    <div class="tile-content">
-                                        <p class="tile-title">{{ trick.name }}</p>
-                                        <p class="tile-subtitle text-gray">{{ trick.introduction }}</p>
-                                        <p>
-                                            <a href="{{ path('figures_show', { id : trick.id }) }}" class="btn btn-sm btn-primary">En savoir +</a>
-                                            <a href="{{ path('figures_edit', { id : trick.id }) }}" class="btn btn-sm">Modifier</a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {% if not loop.last %}
-                                    <div class="divider"></div>
-                                {% endif %}
-
-                            {% else %}
-                                <div class="empty">
-                                    <div class="empty-icon">
-                                        <i class="icon icon-stop"></i>
-                                    </div>
-                                    <p class="empty-title h5">Ce groupe est vide</p>
-                                    <p class="empty-subtitle">Soyez le premier à contribuer !</p>
-                                    <div class="empty-action">
-                                        <a href="{{ path('figures_new') }}" class="btn btn-primary">Créer une figure</a>
-                                    </div>
-                                </div>
-                            {% endfor %}
-
+            <div id="col-left" class="column col-6">
+                <div class="container">
+                    <div class="columns">
+                        <div id="family-intro" class="column col-12">
+                            <h1 class="text-uppercase text-bold text-break">{{ family.name }}</h1>
+                            <div class="divider" data-content="PRESENTATION"></div>
+                            <p class="text-justify">{{ family.introduction }}</p>
                         </div>
-                        <div id="actions" class="text-center">
 
-                            <div>
-                                <p>Sentez-vous libre de contribuer.</p>
-                                <a href="{{ path('figures_familles_edit', { id : family.id }) }}" class="btn btn-primary">Modifier le groupe</a>
+                        <div id="family-actions" class="column col-12">
+                            <div class="columns">
+                                <div class="column col-6">
+                                    <a href="{{ path("figures_familles_edit", { id : family.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier le groupe</a>
+                                </div>
+                                <div class="column col-6 text-right">
+                                    {{ form_start(delete_form) }}
+                                        <button type="submit" class="btn ask-confirm text-bold text-uppercase">Supprimer le groupe</button>
+                                    {{ form_end(delete_form) }}
+                                </div>
                             </div>
-
-                            <br>
-                            <div class="divider" data-content="OU"></div>
-                            <br>
-
-                            <div class="toast toast-error">
-                                <strong>Attention</strong> : en cliquant sur ce bouton, vous supprimez le groupe ainsi que les figures qu'il contient.
-                            </div>
-
-                            <br>
-
-                            {{ form_start(delete_form) }}
-                                <button type="submit" class="ask-confirm btn btn-sm">Supprimer ce groupe</button>
-                            {{ form_end(delete_form) }}
                         </div>
                     </div>
+                </div>
+
+            </div>
+
+            <div id="col-right" class="column col-6">
+                <div class="columns">
+
+                    {# Your turn ! #}
+                    <div class="column col-6">
+                        <div id="leading-card" class="card">
+                            <div class="card-header text-ellipsis">
+                                <div class="card-title h5 text-uppercase text-bold text-center">A vous de jouer !</div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="card-body">
+                                <p class="text-justify">Vous connaissez peut-être une magnifique figure qui trouverait sa place ici ?</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{ path("figures_new", { family : family.id }) }}" class="btn btn-primary btn-block text-bold text-uppercase">Partager ma figure</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% for trick in family.tricks %}
+
+                        <div class="column col-6">
+                            <div class="card">
+                                <div class="card-header text-ellipsis">
+                                    <div class="card-title h5">{{ trick.name }}</div>
+                                    <div class="card-subtitle text-gray text-ellipsis">{{ trick.introduction }}</div>
+                                </div>
+                                <div class="card-image">
+                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group btn-group-block">
+                                        <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn btn-sm text-bold text-uppercase">Modifier</a>
+                                        <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    <script>
-        $(function(){
-
-            let $links = $('li.tab-item');
-            let oldAnchor = null;
-
-            let focusOnLink = function(){
-                let url = window.location.href;
-                let anchor = url.match('#(.+)$') || [null];
-
-                if(anchor[0] && anchor[0] !== oldAnchor)
-                {
-                    oldAnchor = anchor[0];
-                    $links.filter('.active').removeClass('active');
-                    $('a[href="'+anchor[0]+'"]').parent('li.tab-item').addClass('active');
-                }
-                else
-                    setTimeout( focusOnLink, 250 );
-
-            };
-
-            /* Initial and onclick event */
-            focusOnLink();
-            $links.find('a').click( function(){setTimeout( focusOnLink, 50 );});
-        })
-    </script>
-{% endblock %}

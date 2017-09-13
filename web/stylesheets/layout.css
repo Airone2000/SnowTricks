@@ -1,12 +1,38 @@
-html, body
+html
 {
-    width:100%;
-    height:100%;
+    font-size: 20px;
+    line-height: 1.428571429;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body
 {
-    overflow:hidden;
+    padding-top: 120px;
+    background: #feffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 );
+    font-size: .7rem;
+}
+
+*
+{
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    text-rendering:optimizeLegibility
+} /* Généralités */
+
+#main-header, .navbar-custom
+{
+    position: fixed;
+    z-index: 1030;
+    right: 0;
+    left: 0;
+}
+
+#main-header
+{
+    top: 0;
 }
 
 #main-header > img
@@ -14,37 +40,72 @@ body
     display:block;
     width:100%;
     height:50px;
+} /* Banner */
+
+.navbar-custom
+{
+    top: 50px;
+    background-color: #EAEAEA;
+    border-bottom-color: rgba(0,0,0,.08);
+    border-radius: 0;
 }
 
-#main-nav
+.navbar-brand
 {
-    width:100%;
-    height:40px;
-    background-color:#EAEAEA;
-    box-shadow:#555 0px 0px 5px;
+    padding: 0;
 }
 
-#main-nav .navbar-brand
+.navbar-brand > h1
 {
+    height:50px;
+    line-height: 50px;
+    padding:0 10px;
+    margin:0;
     font-family: 'Permanent Marker', cursive;
-    font-size:30px;
-}
+    color: #000;
+} /* Navbar */
 
-#main-nav img
+#global-login-form
 {
-    display:inline-block;
-    height:60px;
-    margin-right:5px;
+    width:300px;
+    padding:5px 15px;
+    background-color: #fff;
 }
 
-#main-main
+#global-login-form label
 {
-    position:absolute;
-    top:90px;
-    bottom:0;
-    left:0;
-    right:0;
-
-    overflow:auto;
-    padding:20px;
+    display:block;
+    width:100%;
+    font-weight: normal;
 }
+
+#global-login-form label > span
+{
+    display: block;
+    margin-bottom:3px;
+    color: #999;
+} /* Main menu login form */
+
+.text-bold
+{
+    font-weight:bold;
+}
+
+.text-ellipsis
+{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.text-gray
+{
+    color:#acb3c2
+} /* Text styles */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+} /* Override the Chrome's yellow banana */

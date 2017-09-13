@@ -7,6 +7,15 @@
 {% block body %}
 
     <div class="container">
+
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            (trick.family.name) : path('figures_familles_show', { id : trick.family.id }),
+            (trick.name) : path('figures_show', { id : trick.id}),
+            'Modifier' : app.request.requestUri
+        }} %}
+
         <div class="columns">
             <div class="form-container col-xl-4 col-lg-6 col-md-12 col-ml-auto col-mr-auto">
 
@@ -102,8 +111,7 @@
                 <br>
                 <div class="divider text-center" data-content="LIENS ANNEXES"></div>
                 <div class="text-center">
-                    <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
-                    <a href="{{ path('figures_new') }}" class="btn btn-link">Créer une figure</a>
+                    <a href="{{ path('figures_new', { family : trick.id }) }}" class="btn btn-link">Créer une figure similaire</a>
                     <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
                     <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Créer un groupe</a>
                 </div>

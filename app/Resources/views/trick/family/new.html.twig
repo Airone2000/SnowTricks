@@ -7,6 +7,14 @@
 {% block body %}
 
     <div class="container">
+
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+        'Accueil' : path('homepage'),
+        'Groupes' : path('figures_familles_index'),
+        'Nouveau groupe' : path('figures_familles_new')
+        }} %}
+
         <div class="columns">
 
             <div class="form-container col-ml-auto col-mr-auto">

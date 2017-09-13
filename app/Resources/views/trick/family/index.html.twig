@@ -6,26 +6,47 @@
 
 {% block body %}
     <div class="container">
+
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+        'Accueil' : path('homepage'),
+        'Groupes' : path('figures_familles_index')
+        }} %}
+
         <div class="columns">
-            <table id="listing" class="table table-hover table-striped col-6 col-ml-auto col-mr-auto">
-                <thead>
+            <div class="column col-8">
+                <table id="listing" class="table table-hover table-striped">
+                    <thead>
                     <tr>
                         <th class="text-bold text-uppercase">Groupes de figures ({{ families|length }})</th>
                         <th class="text-right"><a href="{{ path('figures_familles_new') }}" class="btn btn-primary btn-sm circle tooltip tooltip-left" data-tooltip="Créer un groupe">+</a></th>
                     </tr>
-                </thead>
-                <tbody>
-                {% for family in families %}
-                    <tr>
-                        <td>{{ family.name ~ ' ('~ family.tricks|length ~')' }}</td>
-                        <td class="text-right">
-                            <a href="{{ path('figures_familles_edit', { 'id': family.id }) }}" class="btn btn-sm">Modifier</a>
-                            <a href="{{ path('figures_familles_show', { 'id': family.id }) }}#presentation" class="btn btn-primary btn-sm">Parcourir</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for family in families %}
+                        <tr>
+                            <td>{{ family.name ~ ' ('~ family.tricks|length ~')' }}</td>
+                            <td class="text-right">
+                                <a href="{{ path('figures_familles_show', { 'id': family.id }) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Entrer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column col-4">
+                <div id="call-to-new" class="empty">
+                    <div class="empty-icon">
+                        <i class="icon-emo-unhappy h3"></i>
+                    </div>
+                    <p class="empty-title h4 text-bold text-uppercase">Une figure orpheline ?</p>
+                    <p class="empty-subtitle">Offrez-lui une vraie famille !</p>
+                    <div class="empty-action">
+                        <a href="{{ path('figures_familles_new') }}" class="btn btn-primary text-bold text-uppercase">Ouvrez un groupe</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

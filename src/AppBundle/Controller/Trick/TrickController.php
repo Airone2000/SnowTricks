@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Trick;
 
 use AppBundle\Entity\Trick\Comment;
+use AppBundle\Entity\Trick\Family;
 use AppBundle\Entity\Trick\Trick;
 use AppBundle\Form\Trick\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Trick controller.
  *
- * @Route("figures/")
+ * @Route("figures")
  */
 class TrickController extends Controller
 {
@@ -104,12 +105,13 @@ class TrickController extends Controller
     /**
      * Creates a new trick entity.
      *
-     * @Route("nouvelle-figure", name="figures_new")
+     * @Route("/nouvelle-figure/{family}", name="figures_new", requirements={"family":"\d+"})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Family $family = null)
     {
         $trick = new Trick();
+        $trick->setFamily($family);
         $form = $this->createForm('AppBundle\Form\Trick\TrickType', $trick);
         $form->handleRequest($request);
 
@@ -130,7 +132,7 @@ class TrickController extends Controller
     /**
      * Finds and displays a trick entity.
      *
-     * @Route("{id}", name="figures_show")
+     * @Route("/{id}", name="figures_show")
      * @Method({"GET", "POST"} )
      */
     public function showAction(Trick $trick, Request $request)

@@ -1,22 +1,33 @@
-body
+#family-intro
 {
-    background-color: #8ab6d5;
+    background-color: #fff;
+    padding: 15px 30px;
 }
 
-#family
+#family-actions
 {
-    background: #fff;
-    border:none;
-    padding:10px;
+    background-color: #fff;
+    padding: 15px 30px;
+    margin-top:15px;
 }
 
-#family > .panel-body > div
+#col-right div.card
 {
-    display: none;
+    background:#fff;
+    padding: 0;
+    border:0;
+    margin-bottom: 15px;
+    box-shadow: #999 0px 0px 4px;
 }
 
-#family > .panel-body > div:target
+#leading-card
 {
-    display:block;
-    padding: 20px;
+    height:234px;
+    background: #8AB5D4 !important;
+    box-shadow: none !important;
+}
+
+#leading-card .card-header
+{
+    color:#fff;
 }

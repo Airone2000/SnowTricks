@@ -6,4 +6,11 @@ body
 #listing
 {
     background: #fff;
+    box-shadow: #999 0px 0px 4px;
 }
+
+#call-to-new
+{
+    background-color: #fff;
+}
+
