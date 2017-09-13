@@ -50,42 +50,51 @@
                     </div>
                 </div>
 
-                <div class="encart">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            {{ form_start(delete_form) }}
-                            <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase">Supprimer la figure</button>
-                            {{ form_end(delete_form) }}
-                        </div>
+                {% if is_granted('ROLE_USER') %}
+                    <div class="encart">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{ form_start(delete_form) }}
+                                <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase">Supprimer la figure</button>
+                                {{ form_end(delete_form) }}
+                            </div>
 
-                        <div class="col-xs-6 text-right">
-                            <a href="{{ path("figures_edit", { id : trick.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier la figure</a>
+                            <div class="col-xs-6 text-right">
+                                <a href="{{ path("figures_edit", { id : trick.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier la figure</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div> <!-- Col left -->
 
             <div class="col-xs-6">
 
                 <h1 id="comment-area"><small>Commentaires</small></h1>
-                <div class="encart">
-                    {{ form_start(comment_form) }}
 
-                    <label for="appbundle_trick_comment_comment" class="text-uppercase">Commentaire</label><br><br>
-                    {{ form_widget(comment_form.comment, { 'attr' : { 'placeholder' : 'Partagez vos impressions ...' }}) }}
+                {% if comment_form is not null %}
+                    <div class="encart">
+                        {{ form_start(comment_form) }}
 
-                    <br>
-                    <p class="text-right">
-                        <button type="submit" class="btn btn-primary btn-sm text-bold text-uppercase">Publier</button>
-                    </p>
-                    {{ form_end(comment_form) }}
-                </div>
+                        <label for="appbundle_trick_comment_comment" class="text-uppercase">Commentaire</label><br><br>
+                        {{ form_widget(comment_form.comment, { 'attr' : { 'placeholder' : 'Partagez vos impressions ...' }}) }}
 
-                    <div id="comments" data-controller="{{ path( 'trick_comments', {id : trick.id, page : 0} ) }}">
-                        <div class="text-center">
-                            <p class="loading">Chargement des commentaires ... <i class="icon-spin2 animate-spin"></i></p>
-                        </div>
+                        <br>
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-primary btn-sm text-bold text-uppercase">Publier</button>
+                        </p>
+                        {{ form_end(comment_form) }}
                     </div>
+                {% else %}
+                    <div class="encart text-center text-info">
+                        <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}">Connectez-vous</a> pour commenter
+                    </div>
+                {% endif %}
+
+                <div id="comments" data-controller="{{ path( 'trick_comments', {id : trick.id, page : 0} ) }}">
+                    <div class="text-center">
+                        <p class="loading">Chargement des commentaires ... <i class="icon-spin2 animate-spin"></i></p>
+                    </div>
+                </div>
 
 
             </div> <!-- Col right -->

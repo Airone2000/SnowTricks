@@ -36,13 +36,16 @@
                         </label>
                     </div>
 
+                    <input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') ?? '/' }}" />
                     <button type="submit" class="btn btn-primary text-bold text-uppercase btn-block">Connexion</button>
                 {{ form_end(form) }}
 
                 <hr>
                 <div class="text-center">
-                    <a href="{{ path('register') }}">Créer un compte</a> |
-                    <a href="{{ path('password_recovery') }}">J'ai oublié mon mot de passe</a>
+                    <small>
+                        <a href="{{ path('register') }}">Ouvrir un compte</a> |
+                        <a href="{{ path('password_recovery') }}">J'ai oublié mon mot de passe</a>
+                    </small>
                 </div>
 
             </div>

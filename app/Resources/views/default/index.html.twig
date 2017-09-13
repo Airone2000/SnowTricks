@@ -44,7 +44,9 @@
                                     <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn-sm text-bold text-uppercase">Modifier</a>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn-sm text-bold text-uppercase">Modifier</a>
+                                    {% endif %}
                                     <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>
                                 </div>
                             </div>

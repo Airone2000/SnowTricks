@@ -7,23 +7,32 @@
 {% block body %}
 
     <div class="container">
-        <div class="columns">
-            <div class="form-container col-ml-auto col-mr-auto">
+
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            (family.name) : path('figures_familles_show', { id : family.id }),
+            'Modifier le groupe' : app.request.requestUri
+        }} %}
+
+        <div class="row">
+            <div class="form-container col-xs-6 col-xs-offset-3">
 
                 <h1 class="text-center text-bold">{{ family.name ?? 'Groupe sans nom' }}</h1>
                 {# Afficher message default/success/erreur #}
                 {% for success in app.flashes('success') %}
-                    <p class="toast toast-success text-center">{{ success }}</p>
+                    <p class="alert alert-success text-center">{{ success }}</p>
                 {% else %}
 
                     {% if form_errors(edit_form) %}
-                        <p class="toast toast-error text-center">Veuillez vérifier votre saisie</p>
+                        <p class="alert alert-danger text-center">Veuillez vérifier votre saisie</p>
                     {% else %}
                         <p class="text-gray text-center">Vous modifiez le groupe</p>
                     {% endif %}
 
                 {% endfor %}
-                <div class="divider"></div>
+                <hr>
                 <br>
 
                 {{ form_start(edit_form) }}
@@ -38,14 +47,6 @@
                 {{ form_start(delete_form) }}
                     <button type="submit" class="ask-confirm btn btn-block btn-sm btn-link">Supprimer ce groupe</button>
                 {{ form_end(delete_form) }}
-
-
-                <br>
-                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
-                <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
-                <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Ouvrir un groupe</a>
-                <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
-                <a href="{{ path('figures_new') }}" class="btn btn-link">Créer une figure</a>
 
             </div>
         </div>

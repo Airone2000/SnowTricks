@@ -2,5 +2,5 @@
 {% if avatar is not null  %}
 <img src="{{ asset(avatar) | imagine_filter('thumbnailer') }}" class="avatar img-responsive img-rounded">
 {% else %}
-<span class="avatar generated">{{ user.nickname|slice(0,1) }}</span>
+<img src="http://via.placeholder.com/150/5?text={{ user.nickname|slice(0,1) }}" class="avatar img-responsive img-rounded">
 {% endif %}

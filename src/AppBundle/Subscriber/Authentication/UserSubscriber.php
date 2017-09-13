@@ -57,7 +57,6 @@ class UserSubscriber implements EventSubscriber
         $entity = $event->getEntity();
         if($entity instanceof UserInterface)
         {
-
             # Doctrine vient de persister une entité User.
             # Je souhaite que le nouvel utilisateur soit directement connecté.
             $securityToken = new UsernamePasswordToken($entity, null, 'p_1', $entity->getRoles());

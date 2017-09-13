@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Trick;
 
 use AppBundle\Entity\Trick\Family;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ class FamilyController extends Controller
      *
      * @Route("/", name="figures_familles_index")
      * @Method("GET")
+     *
      */
     public function indexAction()
     {
@@ -36,6 +38,7 @@ class FamilyController extends Controller
      *
      * @Route("/new", name="figures_familles_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {
@@ -78,6 +81,7 @@ class FamilyController extends Controller
      *
      * @Route("/{id}/edit", name="figures_familles_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, Family $family)
     {
@@ -104,6 +108,7 @@ class FamilyController extends Controller
      *
      * @Route("/{id}", name="figures_familles_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, Family $family)
     {

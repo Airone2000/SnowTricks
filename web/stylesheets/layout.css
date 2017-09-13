@@ -96,6 +96,11 @@ body
     white-space:nowrap;
 }
 
+.text-bolder
+{
+    font-weight: bolder;
+}
+
 .text-gray
 {
     color:#acb3c2
@@ -166,3 +171,13 @@ div.card
 {
     margin-top: 20px;
 } /* Fil d'arianne */
+
+.avatar.generated
+{
+    display:block;
+    width: 100%;
+    height: auto;
+    line-height: 30px;
+    background-color: #ccc;
+    text-align: center;
+}
