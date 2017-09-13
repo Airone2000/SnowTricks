@@ -59,8 +59,7 @@ class AuthenticationController extends Controller
                 $securityToken = new UsernamePasswordToken($user, null, 'p_1', $user->getRoles());
                 $this->get('security.token_storage')->setToken($securityToken);
 
-                # Le mot de passe a été modifié, notification, redirection
-                $this->addFlash('success', 'Mot de passe modifié');
+                # Le mot de passe a été modifié, redirection
                 return $this->redirectToRoute('homepage');
             }
 
