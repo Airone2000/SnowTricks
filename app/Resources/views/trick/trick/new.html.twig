@@ -26,12 +26,12 @@
 
 
 
-        <div class="columns">
-            <div class="form-container col-ml-auto col-mr-auto">
+        <div class="row">
+            <div class="form-container col-xs-6 col-xs-offset-3">
 
                 <h1 class="text-center text-bold">Nouvelle figure</h1>
                 <p class="text-gray intro text-center">Tous les champs sont requis dont au moins une image et une vidéo.</p>
-                <div class="divider"></div>
+                <hr>
                 <br>
 
                 {{ form_start(form) }}
@@ -40,9 +40,9 @@
 
                     <div class="form-group">
                         <label class="form-label">Ajouter des média :</label>
-                        <p class="btn-group btn-group-block form-group">
-                            <button type="button" class="add-image btn btn-sm">Ajouter une image</button>
-                            <button type="button" class="add-video btn btn-sm">Ajouter une vidéo</button>
+                        <p id="btn-add-media">
+                            <button type="button" class="add-image btn btn-default btn-sm"><i class="icon-picture"></i> Ajouter une image</button>
+                            <button type="button" class="add-video btn btn-default btn-sm"><i class="icon-video"></i> Ajouter une vidéo</button>
                             {{ form_errors(form) }}
                         </p>
                     </div>
@@ -53,14 +53,6 @@
                         <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Enregistrer</button>
                     </div>
                 {{ form_end(form) }}
-
-                <br>
-                <div class="divider text-center" data-content="LIENS ANNEXES"></div>
-                <div class="text-center">
-                    <a href="{{ path('figures_index') }}" class="btn btn-link">Liste des figures</a>
-                    <a href="{{ path('figures_familles_index') }}" class="btn btn-link">Liste des groupes</a>
-                    <a href="{{ path('figures_familles_new') }}" class="btn btn-link">Créer un groupe</a>
-                </div>
             </div>
         </div>
     </div>
