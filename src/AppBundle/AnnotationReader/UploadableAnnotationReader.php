@@ -10,7 +10,7 @@ class UploadableAnnotationReader
 {
     private $reader;
 
-    public function __construct(AnnotationReader $annotationReader)
+    public function __construct(\Doctrine\Common\Annotations\Reader $annotationReader)
     {
         $this->reader = $annotationReader;
     }

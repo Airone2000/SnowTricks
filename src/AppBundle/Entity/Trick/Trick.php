@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="trick")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Trick\TrickRepository")
  *
- * @UniqueEntity("name")
+ * @UniqueEntity("name", message="Ce nom de figure est déjà utilisé")
  *
  * @ORM\HasLifecycleCallbacks()
  */
@@ -33,7 +33,7 @@ class Trick
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Le nom de la figure ne peut être vide")
      * @Assert\Length(max="255")
      */
     private $name;
@@ -43,7 +43,7 @@ class Trick
      *
      * @ORM\Column(name="introduction", type="text")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Veuillez nous parler de cette figure")
      */
     private $introduction;
 
@@ -53,7 +53,7 @@ class Trick
      * @ORM\ManyToOne(targetEntity="Family", inversedBy="tricks")
      * @ORM\JoinColumn(name="family", referencedColumnName="id", nullable=false)
      *
-     * @Assert\NotNull()
+     * @Assert\NotNull(message="Une figure doit appartenir à un groupe. Si le groupe n'existe pas, vous pouvez le créer.")
      */
     private $family;
 
@@ -63,7 +63,7 @@ class Trick
      * @ORM\OneToMany(targetEntity="Image", mappedBy="trick", cascade={"persist", "remove"})
      *
      * @Assert\Valid()
-     * @Assert\Count(min="1")
+     * @Assert\Count(min="1", minMessage="Veuillez illustrer votre figure avec au moins 1 image")
      */
     private $images;
 
@@ -73,7 +73,7 @@ class Trick
      * @ORM\OneToMany(targetEntity="Video", mappedBy="trick", cascade={"persist", "remove"})
      *
      * @Assert\Valid()
-     * @Assert\Count(min="1")
+     * @Assert\Count(min="1", minMessage="Veuillez lier une vidéo à votre figure")
      */
     private $videos;
 

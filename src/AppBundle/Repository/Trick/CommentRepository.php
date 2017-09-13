@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository\Trick;
 
+use AppBundle\Entity\Trick\Trick;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -13,10 +14,12 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getPaginatedComments($first = 0, $maxResults = 10)
+    public function getPaginatedComments($first = 0, $maxResults = 10, Trick $entity = null)
     {
 
         $query = $this->createQueryBuilder('c')
+            ->where('c.trick = :trick')
+            ->setParameter('trick', $entity->getId())
             ->setFirstResult($first * $maxResults)
             ->setMaxResults($maxResults)
             ->orderBy('c.id', 'desc');

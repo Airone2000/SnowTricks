@@ -1,12 +1,36 @@
-html, body
+html
 {
-    width:100%;
+    font-size: 20px;
+    line-height: 1.428571429;
+    -webkit-tap-highlight-color: transparent;
     height:100%;
 }
 
 body
 {
-    overflow:hidden;
+    padding-top: 100px;
+    font-size: .7rem;
+    min-height: 100%;
+    background: #F6F7F8;
+}
+
+*
+{
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    text-rendering:optimizeLegibility
+} /* Généralités */
+
+#main-header, .navbar-custom
+{
+    position: fixed;
+    z-index: 1030;
+    right: 0;
+    left: 0;
+}
+
+#main-header
+{
+    top: 0;
 }
 
 #main-header > img
@@ -14,37 +38,146 @@ body
     display:block;
     width:100%;
     height:50px;
+} /* Banner */
+
+.navbar-custom
+{
+    top: 50px;
+    background-color: #EAEAEA;
+    border-bottom-color: rgba(0,0,0,.08);
+    border-radius: 0;
 }
 
-#main-nav
+.navbar-brand
 {
-    width:100%;
-    height:40px;
-    background-color:#EAEAEA;
-    box-shadow:#555 0px 0px 5px;
+    padding: 0;
 }
 
-#main-nav .navbar-brand
+.navbar-brand > h1
 {
+    height:50px;
+    line-height: 50px;
+    padding:0 10px;
+    margin:0;
     font-family: 'Permanent Marker', cursive;
-    font-size:30px;
+    color: #000;
+} /* Navbar */
+
+#global-login-form
+{
+    width:300px;
+    padding:5px 15px;
+    background-color: #fff;
 }
 
-#main-nav img
+#global-login-form label
 {
-    display:inline-block;
-    height:60px;
-    margin-right:5px;
+    display:block;
+    width:100%;
+    font-weight: normal;
 }
 
-#main-main
+#global-login-form label > span
 {
-    position:absolute;
-    top:90px;
-    bottom:0;
-    left:0;
-    right:0;
+    display: block;
+    margin-bottom:3px;
+    color: #999;
+} /* Main menu login form */
 
-    overflow:auto;
-    padding:20px;
+.text-bold
+{
+    font-weight:bold;
+}
+
+.text-ellipsis
+{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.text-bolder
+{
+    font-weight: bolder;
+}
+
+.text-gray
+{
+    color:#acb3c2
+} /* Text styles */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+} /* Override the Chrome's yellow banana */
+
+.breadcrumb
+{
+    background: transparent;
+}
+
+textarea
+{
+    resize: vertical;
+}
+
+input[type=file]
+{
+    font-size: 14px;
+    line-height: 1.42857143;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.card-footer
+{
+    padding: 10px;
+}
+
+.card-header
+{
+    padding: 15px;
+}
+
+.card-title.h5
+{
+    font-size: 1rem;
+}
+
+div.card
+{
+    background:#fff;
+    padding: 0;
+    border:0;
+    margin-bottom: 15px;
+    box-shadow: rgba(0,0,0,.1) 0 0 3px;
+}
+
+.breadcrumb
+{
+    margin-top: 20px;
+} /* Fil d'arianne */
+
+.avatar.generated
+{
+    display:block;
+    width: 100%;
+    height: auto;
+    line-height: 30px;
+    background-color: #ccc;
+    text-align: center;
 }

@@ -1,16 +1,39 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/family/new.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Family creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="container">
 
-    <ul>
-        <li>
-            <a href="{{ path('figures_familles_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            'Nouveau groupe' : path('figures_familles_new')
+        }} %}
+
+        <div class="row">
+
+            <div class="form-container col-xs-6 col-xs-offset-3">
+
+                <h1 class="text-center text-bold">Nouveau groupe</h1>
+                <p class="text-gray intro text-center">Un groupe est destiné à collecter des figures.</p>
+                <hr>
+                <br>
+
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                    {# Best practice : add this within the template #}
+                    <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Créer</button>
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/default/index.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron toast-home text-center">
+        <h1><strong>Bienvenue</strong></h1>
+        <p>Sur <a href="{{ path('homepage') }}">SnowTricks</a>, votre communauté de Snowboarders !</p>
+        <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
+        <a href="{{ path('register') }}" class="btn text-bold text-uppercase">Devenir membre</a>
+    </div>
+
+    <div class="container-fluid">
+        <br>
+
+        {% for family in families %}
+            {# Custom shuffle filter #}
+            {% set tricks = family.tricks|shuffle|slice(0,7) %}
+
+            {% if tricks is not empty %}
+
+                <h3 class="family-name">
+                    <div class="row">
+                        <div class="col-xs-6 title text-uppercase text-bold">{{ family.name }}</div>
+                        <div class="col-xs-6 link text-right">
+                            <a href="{{ path('figures_familles_show', { id : family.id }) }}" class="">Voir +</a>
+                        </div>
+                    </div>
+                </h3>
+
+                <div class="row">
+
+                    {% for trick in tricks %}
+                        <div class="col-xs-3">
+                            <div class="card">
+                                <div class="card-header text-ellipsis">
+                                    <div class="card-title h5">{{ trick.name }}</div>
+                                    <div class="text-ellipsis text-gray">{{ trick.introduction }}</div>
+                                </div>
+                                <div class="card-image">
+                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
+                                </div>
+                                <div class="card-footer">
+                                    {% if is_granted('ROLE_USER') %}
+                                        <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn-sm text-bold text-uppercase">Modifier</a>
+                                    {% endif %}
+                                    <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+{% endblock %}

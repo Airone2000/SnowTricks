@@ -1,30 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
 
-    <h1>Modifier profil</h1>
-
-    {% for success in app.flashes('success') %}
-        {{ success }}
-    {% endfor %}
-
-    {{ form_start(form) }}
-
-    {{ form_row(form.nickname) }}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            (app.user.nickname) : app.request.requestUri
+        }} %}
 
 
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
 
-    {% if user.avatarPathname is not empty %}
-        <img src="{{ asset(user.avatarPathname) }}" height="100">
-    {% endif %}
+                <h1>Modifier profil</h1>
+                <hr>
 
-    {{ form_row(form.avatarFile) }}
-    {{ form_row(form._token) }}
+                {% for success in app.flashes('success') %}
+                    {{ success }}
+                {% endfor %}
+
+                {{ form_start(form) }}
+
+                {{ form_row(form.nickname) }}
 
 
 
-    <br><br>
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
+                {% if user.avatarPathname is not empty %}
+                    <img src="{{ asset(user.avatarPathname) }}" height="100">
+                {% endif %}
+
+                {{ form_row(form.avatarFile) }}
+                {{ form_row(form._token) }}
+
+                <br><br>
+                <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}

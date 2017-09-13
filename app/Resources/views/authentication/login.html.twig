@@ -1,18 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
 
-    {% if error %}
-        {{ error.message }}
-    {% endif %}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Connexion' : app.request.requestUri
+        }} %}
 
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
 
-    {{ form_start(form, {'attr':{'action': path('login_check') }}) }}
-    {{ form_widget(form) }}
-    <button type="submit">Connexion</button>
-    {{ form_end(form) }}
+                {% if error %}
+                    <div class="alert alert-danger">
+                        Cette combinaison ne nous a pas permis de vous authentifier.
+                    </div>
+                {% endif %}
 
-    <hr>
-    <a href="{{ path('register') }}">Créer un compte</a> |
-    <a href="{{ path('password_recovery') }}">J'ai oublié mon mot de passe</a>
+                {{ form_start(form, {'attr':{'action': path('login_check') }}) }}
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_user_email">Adresse Email :</label>
+                        {{ form_widget(form.email) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_user_password">Mot de passe :</label>
+                        {{ form_widget(form.password) }}
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label>
+                            Mémoriser la connexion
+                            <input type="checkbox" name="_remember_me" checked>
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') ?? '/' }}" />
+                    <button type="submit" class="btn btn-primary text-bold text-uppercase btn-block">Connexion</button>
+                {{ form_end(form) }}
+
+                <hr>
+                <div class="text-center">
+                    <small>
+                        <a href="{{ path('register') }}">Ouvrir un compte</a> |
+                        <a href="{{ path('password_recovery') }}">J'ai oublié mon mot de passe</a>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

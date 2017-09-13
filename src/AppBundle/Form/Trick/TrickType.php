@@ -17,11 +17,23 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('introduction')
+            ->add('name', null, [
+                'label' => 'Nom de la figure :',
+                'attr' => [
+                    'placeholder' => 'Ex : Stalefish',
+                    'autofocus' => true
+                ]
+            ])
+            ->add('introduction', null, [
+                'label' => 'Détails de la figure :',
+                'attr' => [
+                    'placeholder' => 'Dites-nous en plus ...'
+                ]
+            ])
             ->add('family', EntityType::class, [
                 'class' => Family::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label' => 'Ranger dans :'
             ])
             ->add('images', CollectionType::class, [
                 'entry_type' => ImageType::class,
@@ -29,7 +41,8 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'prototype_name' => "_FORM_TRICK_IMAGE_",
-                'entry_options' => ['required' => false, 'label' => false]
+                'entry_options' => ['required' => false, 'label' => false],
+                'label' => false
             ])
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
@@ -37,7 +50,8 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'prototype_name' => "_FORM_TRICK_VIDEO_",
-                'entry_options' => ['label' => false]
+                'entry_options' => ['label' => false],
+                'label' => false
             ]);
     }
     

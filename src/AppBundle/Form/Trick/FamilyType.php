@@ -13,7 +13,20 @@ class FamilyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('introduction');
+        $builder
+            ->add('name', null, [
+                'label' => '* Nom du groupe :',
+                'attr' => [
+                    'placeholder' => 'Nom du groupe',
+                    'autofocus' => true
+                ]
+            ])
+            ->add('introduction', null, [
+                'label' => 'Description :',
+                'attr' => [
+                    'placeholder' => 'Description'
+                ]
+            ]);
     }
     
     /**

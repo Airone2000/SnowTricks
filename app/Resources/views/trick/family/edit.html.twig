@@ -1,21 +1,54 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/family/edit.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Family edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="container">
 
-    <ul>
-        <li>
-            <a href="{{ path('figures_familles_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {# Breadcrumbs #}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            (family.name) : path('figures_familles_show', { id : family.id }),
+            'Modifier le groupe' : app.request.requestUri
+        }} %}
+
+        <div class="row">
+            <div class="form-container col-xs-6 col-xs-offset-3">
+
+                <h1 class="text-center text-bold">{{ family.name ?? 'Groupe sans nom' }}</h1>
+                {# Afficher message default/success/erreur #}
+                {% for success in app.flashes('success') %}
+                    <p class="alert alert-success text-center">{{ success }}</p>
+                {% else %}
+
+                    {% if form_errors(edit_form) %}
+                        <p class="alert alert-danger text-center">Veuillez vérifier votre saisie</p>
+                    {% else %}
+                        <p class="text-gray text-center">Vous modifiez le groupe</p>
+                    {% endif %}
+
+                {% endfor %}
+                <hr>
+                <br>
+
+                {{ form_start(edit_form) }}
+
+                    {{ form_row(edit_form.name) }}
+                    {{ form_row(edit_form.introduction) }}
+
+                    {# Best practice : add this within the template #}
+                    <br><button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>
+                {{ form_end(edit_form) }}
+
+                {{ form_start(delete_form) }}
+                    <button type="submit" class="ask-confirm btn btn-block btn-sm btn-link">Supprimer ce groupe</button>
+                {{ form_end(delete_form) }}
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

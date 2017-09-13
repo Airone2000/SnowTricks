@@ -1,0 +1,31 @@
+#family-intro
+{
+    background-color: #fff;
+    padding: 15px 30px;
+}
+
+#family-actions
+{
+    background-color: #fff;
+    padding: 15px 30px;
+    margin-top:15px;
+}
+
+.card-footer
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+#leading-card
+{
+    background-color: #fff;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+}
+
+#leading-card > .row
+{
+    display:flex;
+    align-items: center;
+}

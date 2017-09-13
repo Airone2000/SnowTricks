@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Authentication;
 
 use AppBundle\Form\Authentication\EditProfilType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,9 @@ class UserController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * Le membre doit être identifié pour modifier son commpte
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
     public function editUserAction(Request $request)
     {

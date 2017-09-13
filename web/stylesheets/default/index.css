@@ -1,0 +1,65 @@
+.toast-home
+{
+    background: #feffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #feffff 0%,#ddf1f9 35%,#a0d8ef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 );
+    box-shadow: #555 0px 0px 3px;
+}
+
+.toast-home h1
+{
+    margin-top:0;
+}
+
+.family-name
+{
+    margin-top:10px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.family-name > .row
+{
+    display:flex;
+    align-items: center;
+}
+
+div.card
+{
+    background:#fff;
+    padding: 0;
+    border:0;
+    margin-bottom: 15px;
+    box-shadow: rgba(0,0,0,.1) 0px 0px 4px;
+}
+
+.family-name .title
+{
+    font-size: 18px;
+    color: rgba(0,0,0,.4);
+}
+
+.family-name .link
+{
+    font-size: 12px;
+}
+
+.card-title.h5
+{
+    font-size: 1rem;
+}
+
+.card-header
+{
+    padding: 15px;
+}
+
+.card-footer
+{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}

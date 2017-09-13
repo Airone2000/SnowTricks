@@ -1,12 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Inscription</button>
-    {{ form_end(form) }}
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Inscription' : app.request.requestUri
+        }} %}
 
-    <hr>
-    <a href="{{ path('login') }}">Connexion</a>
+        <div class="row">
+
+            <div class="col-xs-3">
+                <img src="http://vgboxart.com/resources/render/1833_ssx-elisa-prev.png" class="img-responsive">
+            </div>
+
+            <div class="col-xs-4 col-xs-offset-1">
+                {{ form_start(form) }}
+
+                    <h1 class="text-center text-bolder">Rejoignez-Nous</h1>
+                    <p class="text-gray text-center">Inscription gratuite et rapide !</p>
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_register_user_email">Adresse Email :</label>
+                        {{ form_widget(form.email, { id : 'appbundle_authentication_register_user_email', attr : { autofocus : true }}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_user_nickname">Nom d'utilisateur :</label>
+                        {{ form_widget(form.nickname) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_user_password_first">Mot de passe :</label>
+                        {{ form_widget(form.password.first) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appbundle_authentication_user_password_second">Mot de passe (répéter) :</label>
+                        {{ form_widget(form.password.second) }}
+                    </div>
+
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary btn-block text-uppercase text-bold">Inscription</button>
+
+                {{ form_end(form) }}
+
+                <hr>
+                <div class="text-center">
+                    <small>
+                        <a href="{{ path('login') }}">Je possède déjà un compte</a>
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="http://www.renders-graphiques.fr/image/upload/normal/mac_fraser.png" class="img-responsive">
+            </div>
+
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 text-center">
+            <small>
+                Provenance des images : <a href="http://www.renders-graphiques.fr/" target="_blank">RendersGraphiques</a>
+            <small>
+        </div>
+    </div>
+
 {% endblock %}

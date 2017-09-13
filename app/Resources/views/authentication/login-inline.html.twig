@@ -1,0 +1,30 @@
+<form id="global-login-form" method="post" action="{{ path('login_check') }}">
+
+    <h3>Déjà membre ?</h3>
+    <hr>
+
+    <div class="form-group">
+        <label>
+            <span>Adresse Email :</span>
+            <input class="form-control input-sm" placeholder="nom@domaine.xzy" type="email" id="appbundle_authentication_user_email" name="appbundle_authentication_user[email]" required="required" maxlength="255">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            <span>Mot de passe :</span>
+            <input class="form-control input-sm" placeholder="Mot de passe" type="password" id="appbundle_authentication_user_password" name="appbundle_authentication_user[password]" required="required" maxlength="255">
+        </label>
+    </div>
+    <div class="form-group text-center">
+        <label>
+            <small>
+                Mémoriser la connexion
+                <input type="checkbox" name="_remember_me" checked>
+            </small>
+        </label>
+    </div>
+
+    <input type="hidden" name="appbundle_authentication_user[csrf_token]" value="{{ csrf_token('login_form') }}">
+    <button type="submit" class="btn btn-primary btn-sm btn-block text-uppercase text-bold">Connexion</button>
+
+</form>

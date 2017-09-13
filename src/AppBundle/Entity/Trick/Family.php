@@ -29,7 +29,7 @@ class Family
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Cette valeur ne peut être vide")
      * @Assert\Length(max="255")
      */
     private $name;

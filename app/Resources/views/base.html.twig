@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}SnowTricks{% endblock %}</title>
     <meta name="description" content="SnowTricks, votre communauté de Snowboarders !">
 
+    <link href="{{ asset('stylesheets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('stylesheets/fontello/css/animation.css') }}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> <!-- Fonts -->
+    <link href="{{ asset('stylesheets/fontello/css/fontello.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre-exp.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylesheets/spectre/spectre-icons.min.css') }}"> <!-- Spectre.css -->
-
-    <link rel="stylesheet" href="{{ asset('stylesheets/layout.css') }}"> <!-- Custom theme -->
-
+    <link rel="stylesheet" href="{{ asset('stylesheets/layout.css') }}">
     {% block css %}{% endblock %} {# For dedicated css files #}
 
     <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
 
-<header id="main-header">
-    <img src="{{ asset('images/components/header.png') }}" alt="Bannière décorative" />
-</header> <!-- Main header -->
+    <header id="main-header"><img src="{{ asset('images/components/header.png') }}"></header>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-principal-1" aria-expanded="false">
+                    <span class="sr-only">Ouvrir le menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> <!-- Burger  -->
+                <a href="{{ path('homepage') }}" class="navbar-brand">
+                    <h1><img src="{{ asset('images/components/snowboarder.png') }}" height="60"> SnowTricks</h1>
+                </a> <!-- Brand -->
+            </div> <!-- Navbar header -->
 
-<nav id="main-nav" class="navbar container">
-    <div class="navbar-section">
-        <img src="{{ asset('images/components/snowboarder.png') }}" alt="Snowboarder">
-        <a href="{{ path('figures_index') }}" class="navbar-brand">SnowTricks</a>
-    </div>
-    <div class="navbar-section">
-        <div class="dropdown">
-            <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
-                SnowTricks <i class="icon icon-caret"></i>
-            </a>
-            <!-- menu component -->
-            <ul class="menu">
-                <li class="menu-item">
-                    <a href="{{ path('figures_familles_index') }}">Familles de figures</a>
-                </li>
-                <li class="divider"></li>
-                <li class="menu-item">
-                    <a href="{{ path('figures_index') }}">Parcourir les figures</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+            <div class="collapse navbar-collapse" id="menu-principal-1">
+                <ul class="navbar-nav nav navbar-right">
 
-    <div class="navbar-section">
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <div class="dropdown dropdown-right">
-                <a href="#" class="btn btn-primary btn-sm dropdown-toggle" tabindex="0">
-                    <i class="icon-user"></i> Mon compte <i class="icon icon-caret"></i>
-                </a>
-                <!-- menu component -->
-                <ul class="menu">
-                    <li class="divider" data-content="{{ app.user.nickname }}"></li>
-                    <li class="menu-item">
-                        <a href="{{ path('edit_profil') }}">
-                            <i class="icon-pencil"></i> Mon profil
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ path('logout') }}">
-                            <i class="icon-logout"></i> Déconnexion
-                        </a>
-                    </li>
+                    {% if app.user %}
+                        <li class="dropdown">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Mon compte
+                                <span class="icon-down-circle"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li class="dropdown-header text-ellipsis">{{ app.user.nickname }}</li>
+                                <li><a href="{{ path('edit_profil') }}">Modifier mon profil</a></li>
+                                <li class="divider" role="separator"></li>
+                                <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    {% elseif app.request.get('_route') != 'login' %}
+                        <li class="dropdown">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Accès membre
+                                <span class="icon-down-circle"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>{% include 'authentication/login-inline.html.twig' %}</li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('password_recovery') }}" class="btn-xs">Mot de passe oublié ?</a></li>
+                                <li><a href="{{ path('register') }}">Devenir membre !</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+
                 </ul>
-            </div>
-        {% else %}
-            <a href="{{ path('login') }}" class="btn menu-btn btn-sm"><i class="icon-user"></i> Accès membre</a>
-        {% endif %}
-    </div>
-</nav> <!-- Main nav -->
 
-<main id="main-main">{% block body %}{% endblock %}</main>
-<footer></footer>
+            </div> <!-- Collpsible menu -->
+        </div> <!-- Container fluid  -->
+    </nav>
 
+    <main id="main">
+        {% block body %}{% endblock %}
+    </main>
 
-{% block javascripts %}
+    {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('stylesheets/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('javascripts/common.js') }}"></script>
-{% endblock %}
+    {% endblock %}
 </body>
 </html>
