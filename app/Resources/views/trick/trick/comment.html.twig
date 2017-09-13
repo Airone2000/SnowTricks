@@ -1,6 +1,34 @@
 <div id="comment-{{ comment.id }}" class="comment">
-    {{ comment.comment }}
-    <br>
-    <a href="{{ path('edit_comment', {id:comment.id} ) }}" class="edit-comment">Modifier</a>
-    <a href="{{ path('remove_comment', {id : comment.id} ) }}" class="remove-comment">Supprimer</a>
+    <div class="row">
+        <div class="col-xs-2">
+            {% include ':component/inc:avatar_nickname.html.twig' with {user : comment.user} %}
+        </div>
+        <div class="col-xs-10">
+            <div class="comment-bg">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <div class="comment-author"><strong>{{ comment.user.nickname }}</strong></div>
+                            </div>
+                            <div class="col-xs-5 text-right">
+                                <div class="comment-date text-gray">
+                                    <small>{{ comment.createdAt|date("d/m/Y, H:i") }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="comment-comment"><blockquote>{{ comment.comment|nl2br }}</blockquote></div>
+                    </div>
+                    <div class="col-xs-12 text-right">
+                        <div class="comment-actions">
+                            <a href="{{ path('edit_comment', {id:comment.id} ) }}" class="edit-comment btn-xs">Modifier</a>
+                            <a href="{{ path('remove_comment', {id : comment.id} ) }}" class="remove-comment btn-xs text-danger">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,113 @@
+.encart
+{
+    background-color:#fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0,0,0,0.1) 0 0 3px;
+}
+
+.encart > label
+{
+    color: #999;
+    margin-bottom:10px;
+}
+
+.encart .video
+{
+    margin-bottom:15px;
+}
+
+h1#trick-name, h1#comment-area
+{
+    text-transform: uppercase;
+    margin: 0 0 15px;
+}
+
+h1#comment-area
+{
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+#image-viewer
+{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,.95);
+    z-index:9999;
+    padding: 15px;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-viewer > img
+{
+    display:block;
+    max-width:80%;
+    max-height: 80%;
+    border: 5px solid #fff;
+    border-radius:5px;
+}
+
+#image-viewer #btn-close-view
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#image-viewer.hidden
+{
+    display:none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#image-viewer .btn
+{
+    width:30px;
+    height:30px;
+    border-radius: 30px;
+    padding: 0;
+    line-height: 30px;
+    text-align: center;
+}
+
+.comment
+{
+    margin: 15px 0;
+}
+
+.comment-author, .comment-comment, .comment-actions, .comment-date
+{
+    padding: 10px;
+}
+
+.comment-comment
+{
+    padding: 0px 20px;
+}
+
+.comment blockquote
+{
+    font-size: 12px;
+}
+
+.comment-bg
+{
+    background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+#comments
+{
+    margin-bottom: 50px;
+}

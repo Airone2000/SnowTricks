@@ -39,6 +39,21 @@ class Comment
      */
     private $trick;
 
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Authentication\User")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
 
     public function __construct()
     {
@@ -101,5 +116,43 @@ class Comment
     public function getTrick()
     {
         return $this->trick;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return $this
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

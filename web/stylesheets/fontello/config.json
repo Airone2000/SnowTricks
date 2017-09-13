@@ -35,6 +35,18 @@
       "css": "video",
       "code": 59396,
       "src": "elusive"
+    },
+    {
+      "uid": "1dq4tek4k8ea7zlj4kc3w83itnutaxg5",
+      "css": "cancel",
+      "code": 59397,
+      "src": "typicons"
+    },
+    {
+      "uid": "f0c301ac841dafc38d8eb1b933fc73e5",
+      "css": "spin2",
+      "code": 59441,
+      "src": "fontelico"
     }
   ]
 }

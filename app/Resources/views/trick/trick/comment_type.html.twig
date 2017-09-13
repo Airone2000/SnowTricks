@@ -1,4 +1,12 @@
-{{ form_start(form, { attr : {class : 'form-edit-comment', action : path('edit_comment', {id : comment.id}) } } ) }}
-{{ form_row(form) }}
-<button type="submit">Modifier</button>
-{{ form_end(form) }}
+<div class="encart">
+    <label class="text-uppercase text-bold">Mode édition</label><br><br>
+
+    {{ form_start(form, { attr : {class : 'form-edit-comment', action : path('edit_comment', {id : comment.id}) } } ) }}
+    {{ form_widget(form.comment) }}
+
+    <div class="text-right">
+        <br>
+        <button type="submit" class="btn btn-primary text-bold text-uppercase btn-xs">Modifier</button>
+    </div>
+    {{ form_end(form) }}
+</div>

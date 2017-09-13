@@ -1,59 +1,106 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('stylesheets/trick/trick/show.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Trick</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ trick.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ trick.name }}</td>
-            </tr>
-            <tr>
-                <th>Family</th>
-                <td>{{ trick.family.name }}</td>
-            </tr>
-            <tr>
-                <th>Introduction</th>
-                <td>{{ trick.introduction }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
 
-    <ul>
-        <li><h3>Commenter cette figure</h3></li>
-        <li>
-            {{ form_start(comment_form) }}
-            {{ form_row(comment_form.comment) }}
-            <button type="submit">Publier ce commentaire</button>
-            {{ form_end(comment_form) }}
-        </li>
-        <li><h4>Commentaires</h4></li>
-        <li id="comments" data-controller="{{ path( 'trick_comments', {id : trick.id, page : 0} ) }}">
-            <p class="loading"></p>
-        </li>
-    </ul>
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Groupes' : path('figures_familles_index'),
+            (trick.family.name) : path('figures_familles_show', { id : trick.family.id }),
+            (trick.name) : path('figures_show', { id : trick.id})
+        }} %}
 
-    <ul>
-        <li>
-            <a href="{{ path('figures_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('figures_edit', { 'id': trick.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <div class="row">
+            <div class="col-xs-6">
+                <h1 id="trick-name">{{ trick.name }} <small>{{ trick.family.name }}</small></h1>
+
+                <div class="encart">
+                    <label>EN BREF</label>
+                    <p>{{ trick.introduction }}</p>
+                </div>
+
+                <div class="encart">
+                    <label>EN IMAGES</label>
+                    <div class="row">
+                        {% for image in trick.images %}
+                            <div class="col-xs-3">
+                                <a href="javascript:;">
+                                    <img src="{{ asset(image.pathname) | imagine_filter('thumbnailer') }}" class="img-responsive thumbnail image-trick" data-original="{{ asset(image.pathname) }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="encart">
+                    <label>EN VIDEOS</label>
+                    <div class="row">
+                        {% for video in trick.videos %}
+                            <div class="video col-xs-6">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe src="{{ video.urlOrIframe|video }}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="encart">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{ form_start(delete_form) }}
+                            <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase">Supprimer la figure</button>
+                            {{ form_end(delete_form) }}
+                        </div>
+
+                        <div class="col-xs-6 text-right">
+                            <a href="{{ path("figures_edit", { id : trick.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier la figure</a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Col left -->
+
+            <div class="col-xs-6">
+
+                <h1 id="comment-area"><small>Commentaires</small></h1>
+                <div class="encart">
+                    {{ form_start(comment_form) }}
+
+                    <label for="appbundle_trick_comment_comment" class="text-uppercase">Commentaire</label><br><br>
+                    {{ form_widget(comment_form.comment, { 'attr' : { 'placeholder' : 'Partagez vos impressions ...' }}) }}
+
+                    <br>
+                    <p class="text-right">
+                        <button type="submit" class="btn btn-primary btn-sm text-bold text-uppercase">Publier</button>
+                    </p>
+                    {{ form_end(comment_form) }}
+                </div>
+
+                    <div id="comments" data-controller="{{ path( 'trick_comments', {id : trick.id, page : 0} ) }}">
+                        <div class="text-center">
+                            <p class="loading">Chargement des commentaires ... <i class="icon-spin2 animate-spin"></i></p>
+                        </div>
+                    </div>
+
+
+            </div> <!-- Col right -->
+        </div>
+    </div>
+
+    <div id="image-viewer" class="hidden">
+        <a href="javascript:;" id="btn-close-view" class="btn btn-danger text-uppercase text-bold icon-cancel"></a>
+        <img src="">
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('javascripts/trick/image.js') }}"></script>
     <script src="{{ asset('javascripts/trick/comment.js') }}"></script>
 {% endblock %}

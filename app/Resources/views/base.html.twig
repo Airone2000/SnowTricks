@@ -9,6 +9,7 @@
     <meta name="description" content="SnowTricks, votre communauté de Snowboarders !">
 
     <link href="{{ asset('stylesheets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('stylesheets/fontello/css/animation.css') }}" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> <!-- Fonts -->
     <link href="{{ asset('stylesheets/fontello/css/fontello.css') }}" rel="stylesheet">
@@ -40,18 +41,36 @@
 
             <div class="collapse navbar-collapse" id="menu-principal-1">
                 <ul class="navbar-nav nav navbar-right">
-                    <li class="dropdown">
-                        <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Accès membre
-                            <span class="icon-down-circle"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li>{% include 'authentication/login-inline.html.twig' %}</li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('password_recovery') }}" class="btn-xs">Mot de passe oublié ?</a></li>
-                            <li><a href="{{ path('register') }}">Devenir membre !</a></li>
-                        </ul>
-                    </li>
+
+                    {% if app.user %}
+                        <li class="dropdown">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Mon compte
+                                <span class="icon-down-circle"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li class="dropdown-header text-ellipsis">{{ app.user.nickname }}</li>
+                                <li><a href="{{ path('edit_profil') }}">Modifier mon profil</a></li>
+                                <li class="divider" role="separator"></li>
+                                <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="dropdown">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Accès membre
+                                <span class="icon-down-circle"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>{% include 'authentication/login-inline.html.twig' %}</li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('password_recovery') }}" class="btn-xs">Mot de passe oublié ?</a></li>
+                                <li><a href="{{ path('register') }}">Devenir membre !</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+
                 </ul>
 
             </div> <!-- Collpsible menu -->

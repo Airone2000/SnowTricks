@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
 
-        <div class="jumbotron toast-home text-center">
-            <h1><strong>Bienvenue</strong></h1>
-            <p>Sur <a href="{{ path('homepage') }}">SnowTricks</a>, votre communauté de Snowboarders !</p>
-            <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
-            <a href="{{ path('register') }}" class="btn text-bold text-uppercase">Devenir membre</a>
-        </div>
+    <div class="jumbotron toast-home text-center">
+        <h1><strong>Bienvenue</strong></h1>
+        <p>Sur <a href="{{ path('homepage') }}">SnowTricks</a>, votre communauté de Snowboarders !</p>
+        <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
+        <a href="{{ path('register') }}" class="btn text-bold text-uppercase">Devenir membre</a>
+    </div>
+
+    <div class="container-fluid">
         <br>
 
         {% for family in families %}

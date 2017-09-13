@@ -2,7 +2,7 @@ $(function(){
 
 
     var $commentContainer = $('#comments');
-    var $btnLoadMore = $('<button>Charger + de commentaires</button>');
+    var $btnLoadMore = $('<button class="btn btn-default text-uppercase text-bold">Charger + de commentaires</button>');
 
     var controllerRetriever = $commentContainer.data('controller');
     var page = 0;
@@ -55,7 +55,7 @@ $(function(){
     $btnLoadMore.on('click', function(){
 
         // Ajouter le loader
-        $btnLoadMore.addClass('loading');
+        $btnLoadMore.html('Chargement ... <i class="icon-spin2 animate-spin"></i>');
 
         // Appeler 10 commentaires supplémentaires
         loadTenMoreComments(page++);
@@ -66,8 +66,11 @@ $(function(){
 
         if(confirm('Confirmez vous la suppression de ce commentaire ?'))
         {
+            $(this).html('<i class"icon-spin2 animate-spin"></i>');
             let $parent = $(this).closest('div.comment')
             let href = $(this).attr('href');
+
+            $(this).html('<i class="icon-spin2 animate-spin"></i>');
 
             // Normalement,
             $.post(href, { '_method' : 'DELETE' }, function(response){
@@ -87,7 +90,7 @@ $(function(){
         let $parent = $(this).closest('div.comment');
         let href = $(this).attr('href');
 
-        $parent.html('<p class="loading"></p>');
+        $(this).html('<i class="icon-spin2 animate-spin"></i>');
 
         $.get(href, function(response){
 
@@ -118,13 +121,13 @@ $(function(){
         }
 
         /* Afficher le loader */
-        $btnSubmit.addClass('loading');
+        $btnSubmit.html('<i class="icon-spin2 animate-spin"></i>');
 
         /* Procéder à la requête */
         $.post(action, data, function(response){
             if(response.status === 'OK_2')
             {
-                $form.parent('div.comment').replaceWith(response.view);
+                $form.parents('div.comment').replaceWith(response.view);
             }
             else
             {

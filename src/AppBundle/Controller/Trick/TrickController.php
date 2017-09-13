@@ -46,7 +46,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
+     * @Route("/commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
      * @Method("DELETE")
      */
     public function removeCommentAction(Comment $comment, Request $request)
@@ -141,7 +141,7 @@ class TrickController extends Controller
         $deleteForm = $this->createDeleteForm($trick);
 
         # Formulaire d'ajout de commentaires
-        $comment = (new Comment())->setTrick($trick);
+        $comment = (new Comment())->setTrick($trick)->setUser($this->getUser())->setCreatedAt(new \DateTime());
         $commentForm = $this->createForm(CommentType::class, $comment);
         $commentForm->handleRequest($request);
 
@@ -151,7 +151,6 @@ class TrickController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('success', 'Votre commentaire a été enregistré !');
             return $this->redirectToRoute('figures_show', ['id' => $trick->getId()]);
         }
 

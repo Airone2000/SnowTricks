@@ -1,0 +1,6 @@
+{% set avatar = user.avatarPathname %}
+{% if avatar is not null  %}
+<img src="{{ asset(avatar) | imagine_filter('thumbnailer') }}" class="avatar img-responsive img-rounded">
+{% else %}
+<span class="avatar generated">{{ user.nickname|slice(0,1) }}</span>
+{% endif %}
