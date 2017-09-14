@@ -142,7 +142,11 @@ class TrickController extends Controller
             $em->flush();
 
             # Direction => la figure nouvellement créée !
-            return $this->redirectToRoute('figures_show', array('id' => $trick->getId(), 'slug' => $trick->getSlug()));
+            $this->addFlash(
+                'success_new_trick',
+                '<i class="icon-ok"></i> Figure sauvegardée ! <a href="'. $this->generateUrl('figures_show', ['id' => $trick->getId(), 'slug' => $trick->getSlug()]) .'" class="text-bold">Consultez-la ici.</a>');
+
+            return $this->redirectToRoute('figures_familles_show', array('id' => $trick->getFamily()->getId(), 'slug' => $trick->getFamily()->getSlug()));
         }
 
         # Si formulaire non soumis, on renvoie le formulaire.
