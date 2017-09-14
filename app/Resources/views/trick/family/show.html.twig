@@ -15,7 +15,7 @@
         }} %}
 
         <div class="row">
-            <div id="col" class="col-xs-6">
+            <div id="col" class="col-xs-12 col-md-6">
                 <div class="row">
                     <div class="col-xs-12">
                         <div id="family-intro">
@@ -29,12 +29,12 @@
                         <div class="col-xs-12">
                             <div id="family-actions">
                                 <div class="row">
-                                    <div class="col-xs-6">
-                                        <a href="{{ path("figures_familles_edit", { id : family.id }) }}" class="btn btn-primary text-bold text-uppercase">Modifier le groupe</a>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <a href="{{ path("figures_familles_edit", { id : family.id }) }}" class="btn btn-primary text-bold text-uppercase btn-block text-ellipsis">Modifier le groupe</a>
                                     </div>
-                                    <div class="col-xs-6 text-right">
+                                    <div class="col-xs-12 col-sm-6">
                                         {{ form_start(delete_form) }}
-                                        <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase">Supprimer le groupe</button>
+                                        <button type="submit" class="btn btn-default ask-confirm text-bold text-uppercase btn-block text-ellipsis">Supprimer le groupe</button>
                                         {{ form_end(delete_form) }}
                                     </div>
                                 </div>
@@ -44,16 +44,16 @@
                 </div>
             </div>
 
-            <div id="col-right" class="col-xs-6">
+            <div id="col-right" class="col-xs-12 col-md-6">
                 <div class="row">
 
                     {# Your turn ! #}
                     <div class="col-xs-12">
                         <div id="leading-card">
                             <div class="row">
-                                <div class="col-xs-8 text-gray">Ce groupe recense {{ family.tricks|length }} figures. {% if not is_granted('ROLE_USER') %}<br> <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}"><i class="icon-login"></i> Connectez-vous</a> pour l'éditer.{% endif %}</div>
-                                <div class="col-xs-4 text-right">
-                                    <a href="{{ path('figures_new', { family : family.id }) }}" class="btn btn-warning text-uppercase text-bold"><i class="icon-plus-circled"></i> figure</a>
+                                <div class="col-xs-12 col-sm-8 text-gray">Ce groupe recense {{ family.tricks|length }} figures. {% if not is_granted('ROLE_USER') %}<br> <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}"><i class="icon-login"></i> Connectez-vous</a> pour l'éditer.{% endif %}</div>
+                                <div class="col-xs-12 col-sm-4 text-right">
+                                    <a href="{{ path('figures_new', { family : family.id }) }}" class="btn btn-warning text-uppercase text-bold btn-block"><i class="icon-plus-circled"></i> figure</a>
                                 </div>
                             </div>
                         </div>
@@ -61,14 +61,14 @@
 
                     {% for trick in family.tricks %}
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-6">
                             <div class="card">
                                 <div class="card-header text-ellipsis">
                                     <div class="card-title h5"><a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}">{{ trick.name }}</a></div>
                                     <div class="card-subtitle text-gray text-ellipsis">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
+                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_responsive') }}" class="img-responsive">
                                 </div>
                                 <div class="card-footer">
                                     {% if is_granted('ROLE_USER') %}
