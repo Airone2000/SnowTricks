@@ -20,7 +20,7 @@
                     <div id="family-intro" class="col-xs-12">
                         <h1 class="text-uppercase text-bold text-break">{{ family.name }}</h1>
                         <div class="divider" data-content="PRESENTATION"></div>
-                        <p class="text-justify">{{ family.introduction|nl2br|markdown|raw }}</p>
+                        <p class="text-justify">{{ family.introduction|nl2br|markdown|purify }}</p>
                     </div>
 
                     {% if is_granted('ROLE_USER') %}
