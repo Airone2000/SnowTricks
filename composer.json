@@ -32,7 +32,8 @@
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
         "liip/imagine-bundle" : "^1.9",
-        "erusev/parsedown-extra" : "0.7.1"
+        "erusev/parsedown-extra" : "0.7.1",
+        "ezyang/htmlpurifier" : "4.9.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
