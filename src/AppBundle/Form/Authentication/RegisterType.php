@@ -28,7 +28,10 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Authentication\User'
+            'data_class' => 'AppBundle\Entity\Authentication\User',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'csrf_token_register',
+            'csrf_token_id' => 'register_form'
         ));
     }
 
