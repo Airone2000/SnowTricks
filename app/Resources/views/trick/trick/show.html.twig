@@ -73,6 +73,7 @@
 
                 {% if comment_form is not null %}
                     <div class="encart">
+                        {{ form_errors(comment_form) }}
                         {{ form_start(comment_form) }}
 
                         <label for="appbundle_trick_comment_comment" class="text-uppercase"><i class="icon-comment"></i>  Commentaire</label><br><br>

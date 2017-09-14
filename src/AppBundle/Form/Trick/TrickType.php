@@ -62,7 +62,11 @@ class TrickType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Trick\Trick'
+            'data_class' => 'AppBundle\Entity\Trick\Trick',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'trick_csrf_token',
+            'csrf_token_id' => 'TRICK_FORM',
+            'csrf_message' => 'Le jeton CSRF est incorrect. Tentez de renvoyer le formulaire.'
         ));
     }
 

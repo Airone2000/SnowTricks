@@ -26,7 +26,11 @@ class ResetPasswordType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Authentication\User'
+            'data_class' => 'AppBundle\Entity\Authentication\User',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'reset_password_form',
+            'csrf_token_id' => 'RESET_ACT',
+            'csrf_message' => 'Jeton CSRF invalide ! Tentez de renvoyer la formulaire à nouveau.'
         ));
     }
 

@@ -22,7 +22,11 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Trick\Comment'
+            'data_class' => 'AppBundle\Entity\Trick\Comment',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'comment_csrf_token',
+            'csrf_token_id' => 'COMMENT_ACT',
+            'csrf_message' => 'Le jeton CSRF est incorrect. Tentez de renvoyer le commentaire.'
         ));
     }
 

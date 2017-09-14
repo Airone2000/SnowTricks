@@ -22,7 +22,11 @@ class PasswordRecoveryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Authentication\PasswordRecovery'
+            'data_class' => 'AppBundle\Entity\Authentication\PasswordRecovery',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'csrf_token_recovery',
+            'csrf_token_id' => 'recovery_form',
+            'csrf_message' => 'Jeton CSRF invalide ! Tentez de renvoyer la formulaire à nouveau.'
         ));
     }
 

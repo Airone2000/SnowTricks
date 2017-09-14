@@ -1,6 +1,7 @@
 <div class="encart">
     <label class="text-uppercase text-bold">Mode édition</label><br><br>
 
+    {{ form_errors(form) }}
     {{ form_start(form, { attr : {class : 'form-edit-comment', action : path('edit_comment', {id : comment.id}) } } ) }}
     {{ form_widget(form.comment) }}
 

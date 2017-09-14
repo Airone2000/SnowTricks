@@ -27,7 +27,8 @@ class LoginType extends AbstractType
             'data_class' => 'AppBundle\Entity\Authentication\User',
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-            'csrf_token_id' => 'login_form'
+            'csrf_token_id' => 'login_form',
+            'csrf_message' => 'Jeton CSRF invalide ! Tentez de renvoyer la formulaire à nouveau.'
         ));
     }
 
