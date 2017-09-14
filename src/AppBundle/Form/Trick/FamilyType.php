@@ -24,7 +24,8 @@ class FamilyType extends AbstractType
             ->add('introduction', null, [
                 'label' => 'Description :',
                 'attr' => [
-                    'placeholder' => 'Description'
+                    'placeholder' => 'Description',
+                    'class' => 'mde'
                 ]
             ]);
     }

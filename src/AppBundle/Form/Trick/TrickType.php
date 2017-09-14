@@ -27,7 +27,8 @@ class TrickType extends AbstractType
             ->add('introduction', null, [
                 'label' => 'Détails de la figure :',
                 'attr' => [
-                    'placeholder' => 'Dites-nous en plus ...'
+                    'placeholder' => 'Dites-nous en plus ...',
+                    'class' => 'mde'
                 ]
             ])
             ->add('family', EntityType::class, [

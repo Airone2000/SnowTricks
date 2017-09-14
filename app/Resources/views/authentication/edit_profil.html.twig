@@ -16,7 +16,7 @@
                 <hr>
 
                 {% for success in app.flashes('success') %}
-                    {{ success }}
+                    <div class="alert alert-success text-center">{{ success }}</div>
                 {% endfor %}
 
                 {{ form_start(form) }}

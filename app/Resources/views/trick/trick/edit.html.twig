@@ -12,8 +12,8 @@
         {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
             'Accueil' : path('homepage'),
             'Groupes' : path('figures_familles_index'),
-            (trick.family.name) : path('figures_familles_show', { id : trick.family.id }),
-            (trick.name) : path('figures_show', { id : trick.id}),
+            (trick.family.name) : path('figures_familles_show', { id : trick.family.id, slug : trick.family.slug }),
+            (trick.name) : path('figures_show', { id : trick.id, slug : trick.slug }),
             'Modifier' : app.request.requestUri
         }} %}
 

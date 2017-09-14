@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ family.name ~ ' ('~ family.tricks|length ~')' }}</td>
                             <td class="text-right">
-                                <a href="{{ path('figures_familles_show', { 'id': family.id }) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Entrer</a>
+                                <a href="{{ path('figures_familles_show', { 'id': family.id, slug : family.slug }) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Entrer</a>
                             </td>
                         </tr>
                     {% endfor %}

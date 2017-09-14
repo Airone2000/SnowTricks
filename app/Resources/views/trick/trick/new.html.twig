@@ -19,7 +19,7 @@
             {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
                 'Accueil' : path('homepage'),
                 'Groupes' : path('figures_familles_index'),
-                (trick.family.name) : path('figures_familles_show', { id : trick.family.id }),
+                (trick.family.name) : path('figures_familles_show', { id : trick.family.id, slug : trick.Family.slug }),
                 'Nouvelle figure' : path('figures_new', { family : trick.family.id ?? null })
             }} %}
         {% endif %}

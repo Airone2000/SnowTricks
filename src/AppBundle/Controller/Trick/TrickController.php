@@ -6,6 +6,8 @@ use AppBundle\Entity\Trick\Comment;
 use AppBundle\Entity\Trick\Family;
 use AppBundle\Entity\Trick\Trick;
 use AppBundle\Form\Trick\CommentType;
+use AppBundle\Service\Common\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -111,8 +113,11 @@ class TrickController extends Controller
      * @Route("/nouvelle-figure/{family}", name="figures_new", requirements={"family":"\d+"})
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \AppBundle\Entity\Trick\Family|null $family
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request, Family $family = null)
+    public function newAction(Request $request, Family $family = null, Slugify $slugifier)
     {
         # Nouvelle figure, action réservée aux membres inscrits
         # Nouvelle instance + on l'associe d'ores et déjà à une famille
@@ -126,6 +131,10 @@ class TrickController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            # Je pourrais slugifier dans un service mais
+            # pour la facilité, je le fais ici.
+            $trick->setSlug( $slugifier->exec( $trick->getName() ) );
+
             # Sauvegarder la nouvelle figure
             # La sauvegarde des images / vidéos se fait dans un Subscriber
             $em = $this->getDoctrine()->getManager();
@@ -133,7 +142,7 @@ class TrickController extends Controller
             $em->flush();
 
             # Direction => la figure nouvellement créée !
-            return $this->redirectToRoute('figures_show', array('id' => $trick->getId()));
+            return $this->redirectToRoute('figures_show', array('id' => $trick->getId(), 'slug' => $trick->getSlug()));
         }
 
         # Si formulaire non soumis, on renvoie le formulaire.
@@ -146,8 +155,9 @@ class TrickController extends Controller
     /**
      * Finds and displays a trick entity.
      *
-     * @Route("/{id}", name="figures_show")
+     * @Route("/{id}/{slug}.html", name="figures_show")
      * @Method({"GET", "POST"} )
+     * @ParamConverter("trick", options={"mapping" : {"id" : "id", "slug" : "slug"}})
      */
     public function showAction(Trick $trick, Request $request)
     {
@@ -173,7 +183,7 @@ class TrickController extends Controller
                 $em->flush();
 
                 # Et on redirige vers la même figure
-                return $this->redirectToRoute('figures_show', ['id' => $trick->getId()]);
+                return $this->redirectToRoute('figures_show', ['id' => $trick->getId(), 'slug' => $trick->getSlug()]);
             }
 
             $commentFormView = $commentForm->createView();
@@ -193,8 +203,12 @@ class TrickController extends Controller
      * @Route("{id}/modifier", name="figures_edit")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \AppBundle\Entity\Trick\Trick $trick
+     * @param \AppBundle\Service\Common\Slugify $slugifier
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Trick $trick)
+    public function editAction(Request $request, Trick $trick, Slugify $slugifier)
     {
         # Deux formulaires
         # Formulaire de suppression + édition
@@ -203,6 +217,9 @@ class TrickController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            # Slugifier à l'édition
+            $trick->setSlug( $slugifier->exec( $trick->getName() ) );
 
             # L'édition se gère en partie dans un subscriber
             # On sauve
