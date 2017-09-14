@@ -75,7 +75,7 @@
                     <div class="encart">
                         {{ form_start(comment_form) }}
 
-                        <label for="appbundle_trick_comment_comment" class="text-uppercase">Commentaire</label><br><br>
+                        <label for="appbundle_trick_comment_comment" class="text-uppercase"><i class="icon-comment"></i>  Commentaire</label><br><br>
                         {{ form_widget(comment_form.comment, { 'attr' : { 'placeholder' : 'Partagez vos impressions ...' }}) }}
 
                         <br>
@@ -86,7 +86,7 @@
                     </div>
                 {% else %}
                     <div class="encart text-center text-info">
-                        <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}">Connectez-vous</a> pour commenter
+                        <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}"><i class="icon-login"></i> Connectez-vous pour commenter</a>
                     </div>
                 {% endif %}
 
