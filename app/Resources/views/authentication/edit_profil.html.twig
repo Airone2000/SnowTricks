@@ -19,18 +19,18 @@
                     <div class="alert alert-success text-center">{{ success }}</div>
                 {% endfor %}
 
+                {{ form_errors(form) }}
+
                 {{ form_start(form) }}
 
-                {{ form_row(form.nickname) }}
+                    {{ form_row(form.nickname) }}
 
+                    {% if user.avatarPathname is not empty %}
+                        <img src="{{ asset(user.avatarPathname) }}" height="100">
+                    {% endif %}
 
-
-                {% if user.avatarPathname is not empty %}
-                    <img src="{{ asset(user.avatarPathname) }}" height="100">
-                {% endif %}
-
-                {{ form_row(form.avatarFile) }}
-                {{ form_row(form._token) }}
+                    {{ form_row(form.avatarFile) }}
+                    {{ form_row(form.csrf_token_edit_profile) }}
 
                 <br><br>
                 <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>
