@@ -101,6 +101,12 @@
       "css": "right-bold",
       "code": 59405,
       "src": "entypo"
+    },
+    {
+      "uid": "85528017f1e6053b2253785c31047f44",
+      "css": "comment",
+      "code": 59406,
+      "src": "fontawesome"
     }
   ]
 }

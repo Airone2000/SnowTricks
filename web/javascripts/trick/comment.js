@@ -2,7 +2,7 @@ $(function(){
 
 
     var $commentContainer = $('#comments');
-    var $btnLoadMore = $('<button class="btn btn-default text-uppercase text-bold">Charger + de commentaires</button>');
+    var $btnLoadMore = $('<button class="btn btn-default text-uppercase text-bold">Charger <i class="icon-plus-circled"></i> de commentaires</button>');
 
     var controllerRetriever = $commentContainer.data('controller');
     var page = 0;
