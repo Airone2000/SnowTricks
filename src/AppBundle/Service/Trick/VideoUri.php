@@ -24,6 +24,14 @@ class VideoUri
                     $value = "https://www.youtube.com/embed/$videoId";
                 }
             }
+            elseif(($value['host'] ?? null) === "youtu.be")
+            {
+                $videoId = ltrim($value['path'], '/') ?? null;
+                if($videoId !== null)
+                {
+                    $value = "https://www.youtube.com/embed/$videoId";
+                }
+            }
             elseif( ($value['host'] ?? null) === 'www.dailymotion.com' && ($value['path'] ?? null) !== null )
             {
                 preg_match('#\/video\/(.*)$#', $value['path'], $match);
