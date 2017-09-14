@@ -49,6 +49,13 @@ class Family
     private $tricks;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * Get id
      *
      * @return int
@@ -145,5 +152,24 @@ class Family
     public function getTricks()
     {
         return $this->tricks;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

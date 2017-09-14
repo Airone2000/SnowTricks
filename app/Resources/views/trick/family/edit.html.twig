@@ -13,7 +13,7 @@
         {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
             'Accueil' : path('homepage'),
             'Groupes' : path('figures_familles_index'),
-            (family.name) : path('figures_familles_show', { id : family.id }),
+            (family.name) : path('figures_familles_show', { id : family.id, slug : family.slug }),
             'Modifier le groupe' : app.request.requestUri
         }} %}
 
@@ -22,8 +22,8 @@
 
                 <h1 class="text-center text-bold">{{ family.name ?? 'Groupe sans nom' }}</h1>
                 {# Afficher message default/success/erreur #}
-                {% for success in app.flashes('success') %}
-                    <p class="alert alert-success text-center">{{ success }}</p>
+                {% for success in app.flashes('success_edit_family') %}
+                    <p class="alert alert-success text-center">{{ success|raw }}</p>
                 {% else %}
 
                     {% if form_errors(edit_form) %}

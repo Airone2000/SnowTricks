@@ -3,6 +3,8 @@
 namespace AppBundle\Controller\Trick;
 
 use AppBundle\Entity\Trick\Family;
+use AppBundle\Service\Common\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -40,18 +42,24 @@ class FamilyController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Slugify $slugify)
     {
         $family = new Family();
         $form = $this->createForm('AppBundle\Form\Trick\FamilyType', $family);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            # Générer un slug pour cette famille
+            # Pourrait être fait en tant que service
+            # Mais peut également se faire ici
+            $family->setSlug( $slugify->exec($family->getName()) );
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($family);
             $em->flush();
 
-            return $this->redirectToRoute('figures_familles_show', array('id' => $family->getId()));
+            return $this->redirectToRoute('figures_familles_show', array('id' => $family->getId(), 'slug' => $family->getSlug()));
         }
 
         return $this->render('trick/family/new.html.twig', array(
@@ -63,8 +71,9 @@ class FamilyController extends Controller
     /**
      * Finds and displays a family entity.
      *
-     * @Route("/{id}", name="figures_familles_show")
+     * @Route("/{id}/{slug}.html", name="figures_familles_show", requirements={"slug" : "[a-z0-9\-]+"})
      * @Method("GET")
+     * @ParamConverter("family", options={"mapping" : {"id" : "id", "slug" : "slug"}})
      */
     public function showAction(Family $family)
     {
@@ -83,16 +92,23 @@ class FamilyController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function editAction(Request $request, Family $family)
+    public function editAction(Request $request, Family $family, Slugify $slugify)
     {
+
         $deleteForm = $this->createDeleteForm($family);
         $editForm = $this->createForm('AppBundle\Form\Trick\FamilyType', $family);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'Le groupe a été mis à jour !');
 
+            # SLugifier le nom
+            $family->setSlug( $slugify->exec($family->getName()) );
+
+            # Sauvegarder le tout
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success_edit_family', 'Le groupe a été mis à jour ! <a href="'. $this->generateUrl('figures_familles_show', ['id' => $family->getId(), 'slug' => $family->getSlug()]) .'" class="text-bold"">Voir le groupe</a>');
+
+            # Redirect ...
             return $this->redirectToRoute('figures_familles_edit', array('id' => $family->getId()));
         }
 
@@ -106,7 +122,7 @@ class FamilyController extends Controller
     /**
      * Deletes a family entity.
      *
-     * @Route("/{id}", name="figures_familles_delete")
+     * @Route("/supprimer/{id}", name="figures_familles_delete")
      * @Method("DELETE")
      * @Security("has_role('ROLE_USER')")
      */

@@ -60,7 +60,7 @@
                         <div class="col-xs-6">
                             <div class="card">
                                 <div class="card-header text-ellipsis">
-                                    <div class="card-title h5"><a href="{{ path('figures_show', { id : trick.id }) }}">{{ trick.name }}</a></div>
+                                    <div class="card-title h5"><a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}">{{ trick.name }}</a></div>
                                     <div class="card-subtitle text-gray text-ellipsis">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">
@@ -68,10 +68,10 @@
                                 </div>
                                 <div class="card-footer">
                                     {% if is_granted('ROLE_USER') %}
-                                        <a href="{{ path('remove_trick', { id : trick.id}) }}" class="btn btn btn-sm text-bold text-uppercase ask-confirm"><i class="icon-trash"></i></a>
-                                        <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn btn-sm text-bold text-uppercase"><i class="icon-pencil"></i></a>
+                                        <a href="{{ path('remove_trick', { id : trick.id }) }}" class="btn btn btn-sm text-bold text-uppercase ask-confirm"><i class="icon-trash"></i></a>
+                                        <a href="{{ path('figures_edit', { id : trick.id }) }}" class="btn btn btn-sm text-bold text-uppercase"><i class="icon-pencil"></i></a>
                                     {% endif %}
-                                    <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase"><i class="icon-right-bold"></i></a>
+                                    <a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}" class="btn btn-primary btn-sm text-bold text-uppercase"><i class="icon-right-bold"></i></a>
                                 </div>
                             </div>
 
