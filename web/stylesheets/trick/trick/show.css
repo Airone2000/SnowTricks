@@ -17,6 +17,12 @@
     margin-bottom:15px;
 }
 
+.encart img
+{
+    max-width: 100%;
+    height:auto;
+}
+
 h1#trick-name, h1#comment-area
 {
     text-transform: uppercase;

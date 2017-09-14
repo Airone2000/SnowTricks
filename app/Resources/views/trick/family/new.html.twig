@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <link rel="stylesheet" href="{{ asset('stylesheets/trick/family/new.css') }}">
 {% endblock %}
 
@@ -36,4 +37,10 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="{{ asset('javascripts/md.js') }}"></script>
 {% endblock %}

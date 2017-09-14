@@ -4,6 +4,7 @@ var uniqid = function() {
 
 $(function(){
 
+    /* Demander confirmation pour supprimer un contenu */
     $(document).on('click', '.ask-confirm', function(){
         if(!confirm("Êtes-vous sûr ?")){
             return false;

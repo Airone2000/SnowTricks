@@ -17,6 +17,7 @@ class defaultController extends Controller
         # L'accueil liste les figures, par famille.
         # La page est accessible à tous.
 
+
         $families = $this->getDoctrine()->getManager()->getRepository(Family::class)->findAll();
         return $this->render('default/index.html.twig', ['families' => $families]);
     }

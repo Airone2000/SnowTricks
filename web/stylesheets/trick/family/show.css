@@ -4,6 +4,12 @@
     padding: 15px 30px;
 }
 
+#family-intro img
+{
+    max-width: 100%;
+    height:auto;
+}
+
 #family-actions
 {
     background-color: #fff;
