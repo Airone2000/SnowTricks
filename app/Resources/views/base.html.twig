@@ -30,21 +30,24 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-principal-1" aria-expanded="false">
                     <span class="sr-only">Ouvrir le menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <i class="icon-menu"></i>
                 </button> <!-- Burger  -->
                 <a href="{{ path('homepage') }}" class="navbar-brand">
-                    <h1><img src="{{ asset('images/components/snowboarder.png') }}" height="60"> SnowTricks</h1>
+                    <h1 class="hidden-xs"><img src="{{ asset('images/components/snowboarder.png') }}" height="60"> SnowTricks</h1>
+                    <h1 class="visible-xs"><img src="{{ asset('images/components/snowboarder.png') }}" height="60"></h1>
                 </a> <!-- Brand -->
             </div> <!-- Navbar header -->
 
+            <div class="container">
             <div class="collapse navbar-collapse" id="menu-principal-1">
                 <ul class="navbar-nav nav navbar-right">
+                    <li>
+                        <a href="{{ path('figures_familles_index') }}" class="text-bold text-center text-ellipsis">Groupes de figures ...</a>
+                    </li>
 
                     {% if app.user %}
                         <li class="dropdown">
-                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Mon compte
                                 <span class="icon-down-circle"></span>
                             </button>
@@ -57,14 +60,15 @@
                         </li>
                     {% elseif app.request.get('_route') != 'login' %}
                         <li class="dropdown">
-                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn navbar-btn btn-primary dropdown-toggle btn-sm text-bold text-uppercase btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Accès membre
                                 <span class="icon-down-circle"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>{% include 'authentication/login-inline.html.twig' %}</li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('password_recovery') }}" class="btn-xs">Mot de passe oublié ?</a></li>
+                                <li class="hidden-xs">{% include 'authentication/login-inline.html.twig' %}</li>
+                                <li role="separator" class="divider hidden-xs"></li>
+                                <li class="visible-xs"><a href="{{ path('login') }}"><i class="icon-login"></i> Connexion</a></li>
+                                <li class="hidden-xs"><a href="{{ path('password_recovery') }}" class="btn-xs">Mot de passe oublié ?</a></li>
                                 <li><a href="{{ path('register') }}"><i class="icon-user-add"></i> Devenir membre !</a></li>
                             </ul>
                         </li>
@@ -74,6 +78,7 @@
                 </ul>
 
             </div> <!-- Collpsible menu -->
+            </div>
         </div> <!-- Container fluid  -->
     </nav>
 

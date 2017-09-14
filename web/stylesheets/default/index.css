@@ -52,6 +52,19 @@ div.card
     font-size: 1rem;
 }
 
+.card-image
+{
+    background-color: #ccc;
+    text-align: center;
+}
+
+.card-image > img
+{
+    width:100%;
+    height: auto;
+
+}
+
 .card-header
 {
     padding: 15px;

@@ -226,7 +226,7 @@ class TrickController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             # On notifie et on redirige
-            $this->addFlash('success', 'La figure a été mise à jour !');
+            $this->addFlash('success', 'La figure a été mise à jour ! <a href="'. $this->generateUrl('figures_show', ['id' => $trick->getId(), 'slug' => $trick->getSlug()] ) .'" class="text-bold">Voir la figure</a>');
             return $this->redirectToRoute('figures_edit', array('id' => $trick->getId()));
         }
 

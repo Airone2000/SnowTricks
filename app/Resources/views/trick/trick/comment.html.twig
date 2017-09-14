@@ -1,9 +1,9 @@
 <div id="comment-{{ comment.id }}" class="comment">
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-sm-2 hidden-xs">
             {% include ':component/inc:avatar_nickname.html.twig' with {user : comment.user} %}
         </div>
-        <div class="col-xs-10">
+        <div class="col-xs-12 col-sm-10">
             <div class="comment-bg">
                 <div class="row">
                     <div class="col-xs-12">
