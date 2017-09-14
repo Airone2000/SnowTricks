@@ -38,7 +38,7 @@
                             <div class="card">
                                 <div class="card-header text-ellipsis">
                                     <div class="card-title h5">{{ trick.name }}</div>
-                                    <div class="text-ellipsis text-gray">{{ trick.introduction }}</div>
+                                    <div class="text-ellipsis text-gray">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">
                                     <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
