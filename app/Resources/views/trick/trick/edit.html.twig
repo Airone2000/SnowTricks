@@ -24,7 +24,7 @@
 
                 {# Afficher message default/success/erreur #}
                 {% for success in app.flashes('success') %}
-                    <p class="alert alert-success text-center">{{ success }}</p>
+                    <p class="alert alert-success text-center">{{ success|raw }}</p>
                 {% else %}
 
                     {% if form_errors(edit_form) %}

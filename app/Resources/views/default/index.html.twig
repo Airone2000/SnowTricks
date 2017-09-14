@@ -7,10 +7,21 @@
 {% block body %}
 
     <div class="jumbotron toast-home text-center">
-        <h1><strong>Bienvenue</strong></h1>
-        <p>Sur <a href="{{ path('homepage') }}">SnowTricks</a>, votre communauté de Snowboarders !</p>
-        <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
-        <a href="{{ path('register') }}" class="btn text-bold text-uppercase">Devenir membre</a>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div class="container">
+                <h1><strong>Bienvenue {{ app.user.nickname }}</strong></h1>
+                <p>Comment allez-vous ?</p>
+                <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
+                <a href="{{ path('logout') }}" class="btn text-bold text-uppercase">Déconnexion</a>
+            </div>
+        {% else %}
+            <div class="container">
+                <h1><strong>Bienvenue</strong></h1>
+                <p>Sur <a href="{{ path('homepage') }}">SnowTricks</a>, votre communauté de Snowboarders !</p>
+                <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
+                <a href="{{ path('register') }}" class="btn text-bold text-uppercase">Devenir membre</a>
+            </div>
+        {% endif %}
     </div>
 
     <div class="container-fluid">
@@ -34,14 +45,14 @@
                 <div class="row">
 
                     {% for trick in tricks %}
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-sm-6 col-md-3">
                             <div class="card">
                                 <div class="card-header text-ellipsis">
                                     <div class="card-title h5"><a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}">{{ trick.name }}</a></div>
                                     <div class="text-ellipsis text-gray">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_header') }}" class="img-responsive">
+                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_responsive') }}" class="img-responsive">
                                 </div>
                                 <div class="card-footer">
                                     {% if is_granted('ROLE_USER') %}

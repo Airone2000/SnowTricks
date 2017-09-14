@@ -36,7 +36,7 @@
                         </label>
                     </div>
 
-                    <input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') ?? '/' }}" />
+                    <input type="hidden" name="_target_path" value="{{ app.request.get('_target_path') ?? null }}" />
                     <button type="submit" class="btn btn-primary text-bold text-uppercase btn-block">Connexion</button>
                 {{ form_end(form) }}
 
