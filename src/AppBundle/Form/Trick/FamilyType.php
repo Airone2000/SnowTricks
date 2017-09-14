@@ -36,7 +36,11 @@ class FamilyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Trick\Family'
+            'data_class' => 'AppBundle\Entity\Trick\Family',
+            'csrf_protection' => true,
+            'csrf_field_name' => 'family_csrf_token',
+            'csrf_token_id' => 'FAMILY_FORM',
+            'csrf_message' => 'Le jeton CSRF est incorrect. Tentez de renvoyer le formulaire.'
         ));
     }
 
