@@ -45,6 +45,7 @@
                                 </div>
                                 <div class="card-footer">
                                     {% if is_granted('ROLE_USER') %}
+                                        <a href="{{ path('remove_trick', { id : trick.id}) }}" class="btn btn-sm text-bold text-uppercase ask-confirm">Supprimer</a>
                                         <a href="{{ path('figures_edit', { id : trick.id}) }}" class="btn btn-sm text-bold text-uppercase">Modifier</a>
                                     {% endif %}
                                     <a href="{{ path('figures_show', { id : trick.id}) }}" class="btn btn-primary btn-sm text-bold text-uppercase">Voir</a>

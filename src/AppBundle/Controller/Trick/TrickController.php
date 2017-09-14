@@ -222,10 +222,28 @@ class TrickController extends Controller
     }
 
     /**
+     * @Route("/supprimer/{id}", name="remove_trick")
+     * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function trickRemoveAction(Trick $trick, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($trick);
+        $em->flush();
+
+        $referer = $request->headers->get('referer') ?? $this->generateUrl('figures_familles_show', [
+            'id' => $trick->getFamily()->getId()
+        ]);
+
+        return $this->redirect($referer);
+    }
+
+    /**
      * Deletes a trick entity.
      *
-     * @Route("{id}", name="figures_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="figures_delete")
+     * @Method()
      * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, Trick $trick)
