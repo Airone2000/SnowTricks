@@ -14,6 +14,11 @@
             (family.name) : app.request.requestUri
         }} %}
 
+
+        {% for message in app.flashes('success_new_trick') %}
+            <div class="alert alert-success text-center">{{ message|raw }}</div>
+        {% endfor %}
+
         <div class="row">
             <div id="col" class="col-xs-12 col-md-6">
                 <div class="row">
@@ -53,7 +58,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-8 text-gray">Ce groupe recense {{ family.tricks|length }} figures. {% if not is_granted('ROLE_USER') %}<br> <a href="{{ path('login') }}?_target_path={{ app.request.requestUri }}"><i class="icon-login"></i> Connectez-vous</a> pour l'éditer.{% endif %}</div>
                                 <div class="col-xs-12 col-sm-4 text-right">
-                                    <a href="{{ path('figures_new', { family : family.id }) }}" class="btn btn-warning text-uppercase text-bold btn-block"><i class="icon-plus-circled"></i> figure</a>
+                                    <a href="{{ path('figures_new', { family : family.id }) }}" class="btn btn-info text-uppercase text-bold btn-block"><i class="icon-plus-circled"></i> figure</a>
                                 </div>
                             </div>
                         </div>
