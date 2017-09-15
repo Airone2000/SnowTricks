@@ -10,7 +10,11 @@
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div class="container">
                 <h1><strong>Bienvenue {{ app.user.nickname }}</strong></h1>
-                <p>Comment allez-vous ?</p>
+                {% for msg in app.flashes('success') %}
+                    <p>{{ msg }}</p>
+                {% else %}
+                    <p>Comment allez-vous ?</p>
+                {% endfor %}
                 <a href="{{ path('figures_new') }}" class="btn btn-primary text-bold text-uppercase">Partager une figure</a>
                 <a href="{{ path('logout') }}" class="btn text-bold text-uppercase">Déconnexion</a>
             </div>
@@ -35,7 +39,7 @@
 
                 <h3 class="family-name">
                     <div class="row">
-                        <div class="col-xs-6 title text-uppercase text-bold">{{ family.name }}</div>
+                        <div class="col-xs-6 title text-uppercase text-bold text">{{ family.name }}</div>
                         <div class="col-xs-6 link text-right">
                             <a href="{{ path('figures_familles_show', { id : family.id, slug : family.slug }) }}" class="">Voir <i class="icon-plus-circled"></i></a>
                         </div>
@@ -48,7 +52,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <div class="card">
                                 <div class="card-header text-ellipsis">
-                                    <div class="card-title h5"><a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}">{{ trick.name }}</a></div>
+                                    <div class="card-title h5 text-ellipsis"><a href="{{ path('figures_show', { id : trick.id, slug : trick.slug }) }}">{{ trick.name }}</a></div>
                                     <div class="text-ellipsis text-gray">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">

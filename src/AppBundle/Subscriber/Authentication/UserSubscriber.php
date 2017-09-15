@@ -63,7 +63,7 @@ class UserSubscriber implements EventSubscriber
             $this->tokenStorage->setToken($securityToken);
 
             # L'inscription est terminée : on charge un message !
-            $this->session->getFlashBag()->add('success', 'Bienvenue parmi nous !');
+            $this->session->getFlashBag()->add('success', 'Nous sommes heureux de vous compter parmi nous !');
         }
     }
 }

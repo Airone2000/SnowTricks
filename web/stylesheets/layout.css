@@ -60,7 +60,7 @@ body
     padding:0 10px;
     margin:0;
     font-family: 'Permanent Marker', cursive;
-    color: #000;
+    color: #ccc;
 } /* Navbar */
 
 #global-login-form
@@ -99,6 +99,11 @@ body
 .text-bolder
 {
     font-weight: bolder;
+}
+
+.text-break
+{
+    word-break: break-all;
 }
 
 .text-gray
