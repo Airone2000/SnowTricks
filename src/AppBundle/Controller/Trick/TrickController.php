@@ -25,7 +25,7 @@ class TrickController extends Controller
 {
     /**
      * @Route("commentaires/{id}/modifier", name="edit_comment", requirements={"id":"\d+"})
-     * @Security("has_role('ROLE_USER')")
+     * @Security("has_role('ROLE_ADMIN') or user == comment.getUser()")
      */
     public function editCommentAction(Comment $comment, Request $request)
     {
@@ -60,7 +60,7 @@ class TrickController extends Controller
     /**
      * @Route("/commentaires/{id}/supprimer", name="remove_comment", requirements={"id":"\d+"})
      * @Method("DELETE")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("has_role('ROLE_ADMIN') or user == comment.getUser()")
      */
     public function removeCommentAction(Comment $comment, Request $request)
     {
