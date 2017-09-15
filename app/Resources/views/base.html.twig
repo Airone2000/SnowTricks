@@ -86,6 +86,45 @@
         {% block body %}{% endblock %}
     </main>
 
+    <footer id="main-footer">
+        <div class="container-fluid">
+            <div class="col-xs-12 col-md-4">
+                <div class="text-center">
+                    <br>
+                    <h1>SnowTricks</h1>
+                    <small><i class="icon-copyright"></i> <strong>SnowTricks - 2017</strong></small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="text-center">
+                    <br>
+                    <p>
+                        <a href="https://fr-fr.facebook.com/" target="_blank"><i class="icon-facebook-official ico ic-facebook"></i></a>
+                        <a href="https://twitter.com/?lang=fr" target="_blank"><i class="icon-twitter-squared ico ic-twitter"></i></a>
+                        <a href="https://plus.google.com/?hl=fr" target="_blank"><i class="icon-gplus-circled ico ic-gplus"></i></a>
+                    </p>
+
+                    <p>
+                        <i class="icon-desktop" aria-describedby="Consultez SnowTricks depuis votre ordinateur"></i>
+                        <i class="icon-tablet" aria-describedby="Consultez SnowTricks depuis votre tablette / phablette"></i>
+                        <i class="icon-mobile" aria-describedby="Consultez SnowTricks depuis votre smartphone"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="text-center footer-links">
+                    <br>
+                    <nav>
+                        <a href="javascript:alertCond();"><small>Conditions générales</small></a>
+                        <a href="{{ path('register') }}"><small>Devenir membre</small></a>
+                        <a href="{{ path('figures_familles_new') }}"><small>Ouvrir un groupe</small></a>
+                        <a href="{{ path('figures_new') }}"><small>Présenter une figure</small></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('stylesheets/bootstrap/js/bootstrap.min.js') }}"></script>

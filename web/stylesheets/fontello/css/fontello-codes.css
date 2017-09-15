@@ -15,6 +15,13 @@
 .icon-right-bold:before { content: '\e80d'; } /* '' */
 .icon-comment:before { content: '\e80e'; } /* '' */
 .icon-ok:before { content: '\e80f'; } /* '' */
+.icon-desktop:before { content: '\e810'; } /* '' */
+.icon-tablet:before { content: '\e811'; } /* '' */
+.icon-mobile:before { content: '\e812'; } /* '' */
 .icon-spin2:before { content: '\e831'; } /* '' */
+.icon-gplus-circled:before { content: '\f059'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-trash:before { content: '\f1f8'; } /* '' */
+.icon-copyright:before { content: '\f1f9'; } /* '' */
+.icon-facebook-official:before { content: '\f230'; } /* '' */
+.icon-twitter-squared:before { content: '\f304'; } /* '' */
