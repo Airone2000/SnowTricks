@@ -116,7 +116,9 @@
                     <br>
                     <nav>
                         <a href="javascript:alertCond();"><small>Conditions générales</small></a>
-                        <a href="{{ path('register') }}"><small>Devenir membre</small></a>
+                        {% if not is_granted('ROLE_USER') %}
+                            <a href="{{ path('register') }}"><small>Devenir membre</small></a>
+                        {% endif %}
                         <a href="{{ path('figures_familles_new') }}"><small>Ouvrir un groupe</small></a>
                         <a href="{{ path('figures_new') }}"><small>Présenter une figure</small></a>
                     </nav>
