@@ -18,8 +18,8 @@ class EditProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nickname', null)
-            ->add('avatarFile', FileType::class, ['required' => false]);
+            ->add('nickname', null, ['label' => 'Nom d\'utilisateur :'])
+            ->add('avatarFile', FileType::class, ['required' => false, 'label' => 'Choisir un avatar :']);
     }
 
     /**
