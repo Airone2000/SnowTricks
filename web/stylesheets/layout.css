@@ -187,3 +187,47 @@ div.card
     background-color: #ccc;
     text-align: center;
 }
+
+#main-footer
+{
+    background-color: #333;
+    padding: 15px;
+    margin-top: 30px;
+    color: #fff;
+}
+
+#main-footer h1
+{
+    font-family: 'Permanent Marker', cursive;
+    margin: 0;
+}
+
+#main-footer .ico
+{
+    color: #ccc;
+    font-size: 30px;
+}
+
+.ic-facebook:hover
+{
+    color: #4867AA !important;
+}
+
+.ic-twitter:hover
+{
+    color: #1DA1F2 !important;
+}
+
+.ic-gplus:hover
+{
+    color: #DB4437 !important;
+}
+
+.footer-links a
+{
+    display:block;
+    color: #fff !important;
+    font-variant: small-caps;
+    font-weight: 100;
+    margin: 3px auto;
+}
