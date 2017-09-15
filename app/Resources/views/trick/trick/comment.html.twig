@@ -22,7 +22,7 @@
                         <div class="comment-comment"><blockquote>{{ comment.comment|nl2br }}</blockquote></div>
                     </div>
 
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_ADMIN') or comment.user == app.user %}
                         <div class="col-xs-12 text-right">
                             <div class="comment-actions">
                                 <a href="{{ path('edit_comment', {id:comment.id} ) }}" class="edit-comment btn-xs">Modifier</a>
