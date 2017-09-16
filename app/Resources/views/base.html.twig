@@ -41,6 +41,13 @@
             <div class="container-fluid">
             <div class="collapse navbar-collapse" id="menu-principal-1">
                 <ul class="navbar-nav nav navbar-right">
+
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <li>
+                        <a href="{{ path('admin_list_users') }}">Gestion des utilisateurs</a>
+                    </li>
+                    {% endif %}
+
                     <li>
                         <a href="{{ path('figures_familles_index') }}" class="text-bold text-center text-ellipsis">Groupes de figures ...</a>
                     </li>
