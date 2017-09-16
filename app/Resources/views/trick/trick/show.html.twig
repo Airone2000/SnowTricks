@@ -30,7 +30,7 @@
                         {% for image in trick.images %}
                             <div class="col-xs-6 col-md-3">
                                 <a href="javascript:;">
-                                    <img src="{{ asset(image.pathname) | imagine_filter('thumbnailer') }}" class="img-responsive thumbnail image-trick" data-original="{{ asset(image.pathname) }}">
+                                    <img src="{{ (image.pathname) | imagine_filter('thumbnailer') }}" class="img-responsive thumbnail image-trick" data-original="{{ asset(image.pathname) }}">
                                 </a>
                             </div>
                         {% endfor %}

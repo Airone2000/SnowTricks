@@ -56,7 +56,7 @@
                                     <div class="text-ellipsis text-gray">{{ trick.introduction|markdown|striptags }}</div>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ asset(trick.images.first.pathname) | imagine_filter('thumb_responsive') }}" class="img-responsive">
+                                    <img src="{{ (trick.images.first.pathname) | imagine_filter('thumb_responsive') }}" class="img-responsive">
                                 </div>
                                 <div class="card-footer">
                                     {% if is_granted('ROLE_USER') %}
