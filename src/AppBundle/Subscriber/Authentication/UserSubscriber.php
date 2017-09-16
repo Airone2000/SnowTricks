@@ -48,7 +48,7 @@ class UserSubscriber implements EventSubscriber
             $entity->setPassword( $this->passwordEncoder->encodePassword($entity, $entity->getPassword()) );
 
             # En en profite pour lui donner le groupe par défaut
-            $entity->setRoles('ROLE_USER');
+            $entity->setRoles('[ROLE_USER]');
         }
     }
 
