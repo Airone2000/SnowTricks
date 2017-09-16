@@ -110,7 +110,7 @@ class Video
      *
      * @return Video
      */
-    public function setUrl(string $url): Video
+    public function setUrl(string $url)
     {
         $this->url = $url;
 

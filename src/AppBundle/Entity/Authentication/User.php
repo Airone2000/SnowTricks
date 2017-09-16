@@ -236,7 +236,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getAvatarPathname(): ?string
+    public function getAvatarPathname()
     {
         return $this->avatarPathname;
     }
