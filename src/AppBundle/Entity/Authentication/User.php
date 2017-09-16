@@ -185,7 +185,7 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        $this->roles = $roles;
+        $this->roles = [$roles];
 
         return $this;
     }
@@ -197,7 +197,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return $this->roles[0] ?? null;
     }
 
     /**

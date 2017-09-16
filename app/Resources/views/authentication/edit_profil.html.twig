@@ -3,11 +3,18 @@
 {% block body %}
     <div class="container">
 
-        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+        {% if form.roles is defined and is_granted('ROLE_SUPER_ADMIN') %}
+            {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
             'Accueil' : path('homepage'),
-            (app.user.nickname) : app.request.requestUri
-        }} %}
-
+            'Administration : Gestion des utilisateurs' : path('admin_list_users'),
+            (user.nickname) : app.request.requestUri
+            }} %}
+        {% else %}
+            {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            (user.nickname) : app.request.requestUri
+            }} %}
+        {% endif %}
 
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
@@ -31,6 +38,10 @@
 
                     {{ form_row(form.avatarFile) }}
                     {{ form_row(form.csrf_token_edit_profile) }}
+
+                    {% if form.roles is defined and is_granted('ROLE_SUPER_ADMIN') %}
+                        {{ form_row(form.roles) }}
+                    {% endif %}
 
                 <br><br>
                 <button type="submit" class="btn btn-primary btn-block text-bold text-uppercase">Modifier</button>

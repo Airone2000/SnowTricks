@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        {% include 'component/inc/breadcrumb.html.twig' with { 'links' : {
+            'Accueil' : path('homepage'),
+            'Administration : Gestion des utilisateurs' : ''
+        }} %}
+
+        {% for msg in app.flashes('admin_success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-responsive table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.nickname }}</td>
+                        <td class="text-right">
+                            <a href="{{ path('admin_edit_user', { id : user.id}) }}"><i class="icon-pencil"></i></a>
+                            <a href="{{ path('admin_delete_user', { id : user.id }) }}" class="ask-confirm"><i class="icon-cancel"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
