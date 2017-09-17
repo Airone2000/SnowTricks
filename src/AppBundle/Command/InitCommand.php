@@ -37,7 +37,6 @@ class InitCommand extends Command
 
         $application = new Application($this->kernel);
         $application->setAutoExit(false);
-        $buffer = new BufferedOutput();
 
         $input = new ArrayInput(['command' => 'doctrine:fixtures:load']);
         $application->run($input);
