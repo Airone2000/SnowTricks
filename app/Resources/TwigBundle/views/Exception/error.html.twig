@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container text-center">
+
+        <h1 style="font-size:100px;" class="text-ellipsis">Oups !</h1>
+        <h2>Aïe ! Une erreur est survenue.</h2>
+        <p>Pour toute remarque utile, merci de prendre contact avec un administrateur.</p>
+        <a href="{{ path('homepage') }}" class="btn btn-primary text-bolder text-uppercase">Accueil</a>
+
+    </div>
+
+{% endblock %}
