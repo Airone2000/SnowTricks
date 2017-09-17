@@ -4,6 +4,7 @@
 /phpunit.xml
 /var/*
 !/var/cache
+!/var/data
 /var/cache/*
 !var/cache/.gitkeep
 !/var/logs
@@ -20,3 +21,5 @@
 /web/images/trick
 node_modules
 /web/media/
+!/var/data/json/families_tricks.json
+/var/data/data.sqlite
