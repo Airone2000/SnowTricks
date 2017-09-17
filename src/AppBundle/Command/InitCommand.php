@@ -43,13 +43,11 @@ class InitCommand extends Command
         $application->run($input, $buffer);
         $output->writeln([
             "La base de données a été créée !",
-            "-------------------------------",
-            "Chargement des données ..."
+            "-------------------------------"
         ]);
 
-        $input = new ArrayInput(['command' => 'doctrine:fixtures:load', '--no-interaction' => true]);
-        $input->setInteractive(false);
-        $application->run($input, $buffer);
+        $input = new ArrayInput(['command' => 'doctrine:fixtures:load']);
+        $application->run($input);
 
         $output->writeln([
             "Les données ont été chargées dans l'application.",
