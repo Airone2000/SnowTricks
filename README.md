@@ -24,3 +24,14 @@ As you may have noticed, we keep the default values for the mere reason that we'
 
 - Great ! To finish with, run the next command : `php bin/console snowtricks:start`
 - All is done ! Now, just browse up to your application.
+
+# Locally
+To install this website locally, follow these quick steps :
+- Download the project into any directory on your computer.
+- Using CLI, browse to the directory that contains the project.
+- Run the following : `composer update` and keep the whole default value.
+- Then run : `php bin/console snowtricks:start`
+- Now you're ready ! Just start the embeded webserver by running : `php bin/console server:start localhost:8000`
+- and browse to http://localhost:8000
+
+That's all !
