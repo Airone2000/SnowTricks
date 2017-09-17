@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    data_fixtures: '%kernel.project_dir%/var/data/json/families_tricks.json'
 
 framework:
     #esi: ~
