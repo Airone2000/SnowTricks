@@ -39,6 +39,10 @@ class InitCommand extends Command
         $application->setAutoExit(false);
         $buffer = new BufferedOutput();
 
+
+        $input = new ArrayInput(['command' => 'doctrine:database:create']);
+        $application->run($input, $buffer);
+
         $input = new ArrayInput(['command' => 'doctrine:schema:update', '--force' => true]);
         $application->run($input, $buffer);
         $output->writeln([
