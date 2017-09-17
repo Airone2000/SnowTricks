@@ -23,14 +23,14 @@ class InitCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('snowtricks:start')
-            ->setDescription("Initialisation de l'application");
+            ->setName('snowtricks:feed')
+            ->setDescription("Remplissage de l'application");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln([
-            "Initialisation de l'application",
+            "Remplissage de l'application",
             "===============================",
             "Veuillez patienter"
         ]);
@@ -38,17 +38,6 @@ class InitCommand extends Command
         $application = new Application($this->kernel);
         $application->setAutoExit(false);
         $buffer = new BufferedOutput();
-
-
-        $input = new ArrayInput(['command' => 'doctrine:database:create']);
-        $application->run($input, $buffer);
-
-        $input = new ArrayInput(['command' => 'doctrine:schema:update', '--force' => true]);
-        $application->run($input, $buffer);
-        $output->writeln([
-            "La base de données a été créée !",
-            "-------------------------------"
-        ]);
 
         $input = new ArrayInput(['command' => 'doctrine:fixtures:load']);
         $application->run($input);
