@@ -21,6 +21,9 @@ class Fixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
+        # Generate database
+        file_put_contents($this->container->getParameter('database_path'), null);
+
         # Create one user
         $user1 = new User();
         $user2 = new User();
