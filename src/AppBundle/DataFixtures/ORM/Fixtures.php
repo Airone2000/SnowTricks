@@ -24,10 +24,15 @@ class Fixtures extends Fixture
         # Create one user
         $user1 = new User();
         $user2 = new User();
-        $user1->setEmail('admin@snowtricks.com')->setPassword('password')->setNickname('SnowTricks')->setRoles(['ROLE_SUPER_ADMIN']);
-        $user2->setEmail('maels1991@gmail.com')->setPassword('a')->setNickname('Erwan')->setRoles(['ROLE_SUPER_ADMIN']);
+        $user1->setEmail('admin@snowtricks.com')->setPassword('password')->setNickname('SnowTricks');
+        $user2->setEmail('maels1991@gmail.com')->setPassword('a')->setNickname('Erwan');
         $manager->persist($user1);
         $manager->persist($user2);
+        
+        # Define role after persist (cf:prePersist event)
+        $user1->setRoles(['ROLE_SUPER_ADMIN']);
+        $user2->setRoles(['ROLE_SUPER_ADMIN']);
+        
         $manager->flush();
 
         # Create families / tricks
