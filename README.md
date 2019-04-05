@@ -5,7 +5,7 @@ How to install
 - Enter your server using your SSH client.
 - Browse to where you want the project to be deployed (usually in a custom directory : `mkdir your_custom_dir_name`).
 - Within your target directory, run the next command : `git clone https://github.com/ErwanGuillou/SnowTricks.git .` (without forgetting the dot). 
-- Once it's done, let's install the whole dependencies running the next command : `composer update`. On a remote server, make sure the allowed memory is at least 1.5G. Otherwise, you'll need to increase it by editing your PHP ini configuration file.
+- Once it's done, let's install the whole dependencies running the next command : `composer install`. On a remote server, make sure the allowed memory is at least 1.5G. Otherwise, you'll need to increase it by editing your PHP ini configuration file.
 - You'll be asked to reply to some question :
 
   * database_host : *127.0.0.1|yours*
